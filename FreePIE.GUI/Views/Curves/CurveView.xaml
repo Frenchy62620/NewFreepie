@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="FreePIE.GUI.Views.Curves.CurveView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Charts="clr-namespace:Visiblox.Charts;assembly=Visiblox.Charts"
+             xmlns:Visiblox="clr-namespace:FreePIE.GUI.Common.Visiblox"
+             xmlns:Curves="clr-namespace:FreePIE.GUI.Views.Curves"
+             xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
+    <Grid Margin="5">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="0,0,5,0" VerticalAlignment="Center">Name</Label>
+                <TextBox x:Name="Name" Width="150" />
+                <CheckBox x:Name="ValidateCurve" Margin="5,3,5,0">Validate Curve</CheckBox>
+                <Button x:Name="Reset" IsEnabled="{ Binding Enabled }" >Reset</Button>
+                <Button x:Name="Delete" IsEnabled="{ Binding Enabled }" >Delete</Button>
+                <Button x:Name="Test"  Content="{Binding NameofButton}" />
+
+                <ComboBox x:Name="TypeCurves" Width="120" Margin="5,0,0,0"
+                                  SelectedItem="{Binding SelectedTypeCurve, Mode=TwoWay}"
+                                  SelectedIndex="{Binding SelectedCurveIndex, Mode=TwoWay}"/>
+            </StackPanel>
+            <Charts:Chart  Background="White" Width="600" Height="400" Margin="0,2,0,0" Tag="{Binding BoolTag}" Name="chart">
+                <Charts:Chart.Behaviour>
+                    <Charts:BehaviourManager x:Name="behaviourManager" AllowMultipleEnabled="True">
+                        <Visiblox:MovePointBehaviour OnPointMove="OnPointDragged" OnPointSelected="OnPointSelected" />
+                        <Charts:ZoomBehaviour />
+                        <Charts:TrackballBehaviour/>
+                    </Charts:BehaviourManager>
+                </Charts:Chart.Behaviour>
+                <Charts:Chart.XAxis>
+                    <Charts:LinearAxis ShowMinorTicks="True" ShowGridlines="True" Title="In" AutoScaleToVisibleData="False">
+                    </Charts:LinearAxis>
+                </Charts:Chart.XAxis>
+                <Charts:Chart.YAxis>
+                    <Charts:LinearAxis ShowMinorTicks="True" ShowGridlines="True" Title="Out"  AutoScaleToVisibleData="False">
+                    </Charts:LinearAxis>
+                </Charts:Chart.YAxis>
+                <Charts:Chart.Series>
+                    <Charts:LineSeries PointSize="{ Binding PointSize }" ShowPoints="True" ShowLine="False" ShowArea="false" IsDisplayedOnLegend="false">
+                        <Charts:LineSeries.DataSeries>
+                            <Charts:BindableDataSeries 
+                                ItemsSource="{ Binding SelectablePoints }" 
+                                XValueBinding="{Binding Path=X}" 
+                                YValueBinding="{Binding Path=Y}"/>
+                        </Charts:LineSeries.DataSeries>
+                    </Charts:LineSeries>
+                    <Charts:LineSeries IsDisplayedOnLegend="false">
+                        <Charts:LineSeries.DataSeries>
+                            <Charts:BindableDataSeries  x:Name="e"
+                                ItemsSource="{ Binding Points}" 
+                                XValueBinding="{Binding Path=X}"
+                                YValueBinding="{Binding Path=Y}" />
+                        </Charts:LineSeries.DataSeries>
+                    </Charts:LineSeries>
+                    <Charts:LineSeries IsDisplayedOnLegend = "false" PointSize="10" ShowPoints="True" ShowLine="False" ShowArea="false">
+                        <Charts:LineSeries.DataSeries>
+                            <Charts:BindableDataSeries
+                    ItemsSource = "{ Binding Trace}"
+                    XValueBinding="{Binding Path=X}"
+                    YValueBinding="{Binding Path=Y}" />
+                        </Charts:LineSeries.DataSeries>
+                    </Charts:LineSeries>
+                </Charts:Chart.Series>
+            </Charts:Chart>
+            <GroupBox Header="Selected point">
+                <Border Padding="5">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Margin="0,0,5,0" VerticalAlignment="Center" Width="30" Content="In"/>
+                            <TextBox x:Name="SelectedPointX" IsEnabled="{ Binding HasSelectedPoint }" Width="80" Margin="0,0,20,0" />
+                            <TextBlock x:Name="CurrentX" Foreground="White" Width="100"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Margin="0,0,5,0" VerticalAlignment="Center" Width="30" Content="Out"/>
+                            <TextBox x:Name="SelectedPointY" Width="80" IsEnabled="{ Binding HasSelectedPoint }"  Margin="0,0,20,0"/>
+                            <TextBlock x:Name="CurrentY" Foreground="White" Width="100"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="ApplyNewValuesToSelectedPoint"  HorizontalAlignment="Left" Width="Auto" Margin="0,0,70,0" IsEnabled="{ Binding HasSelectedPoint }" Content="Apply" />
+                            <RadioButton x:Name="Move"  VerticalAlignment="Center" Margin="0,0,10,0" Content="Move" IsEnabled="{ Binding Enabled }"/>
+                            <RadioButton x:Name="Add"   VerticalAlignment="Center" Margin="0,0,10,0" Content="Add" IsEnabled="{ Binding Enabled }"/>
+                            <RadioButton x:Name="Del"  VerticalAlignment="Center" Margin="0,0,10,0" Content="Del" IsEnabled="{ Binding Enabled }"/>
+                            <Slider x:Name="slParam" VerticalAlignment="Center" Margin="0,0,10,0" Width="200"
+                                    TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"
+                                    Minimum="0" Maximum="9"/>
+                            <TextBox x:Name="SliderValue" VerticalAlignment="Center" Margin="0,0,10,0"  Width="30" Text="{Binding ElementName=slParam, Path=Value}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

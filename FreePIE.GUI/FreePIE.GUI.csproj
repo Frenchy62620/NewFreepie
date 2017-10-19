@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EF29A2A3-A29C-4D9A-A8E2-A59925DEA82D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FreePIE.GUI</RootNamespace>
+    <AssemblyName>FreePIE</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>free-pie.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Caliburn.Micro, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.3.0.2\lib\net45\Caliburn.Micro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.0.2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform.Core, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.0.2\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net45\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\packages\AvalonEdit.5.0.3\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.3.0.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Visiblox.Charts">
+      <HintPath>..\Lib\Visiblox\Visiblox.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\Lib\AvalonDock\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Expression">
+      <HintPath>..\Lib\AvalonDock\Xceed.Wpf.AvalonDock.Themes.Expression.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Common\AvalonDock\AutobinderTemplateSelector.cs" />
+    <Compile Include="Common\AvalonDock\DocumentContext.cs" />
+    <Compile Include="Common\AvalonEdit\BindableScriptEditor.cs" />
+    <Compile Include="Common\Caliburn\ActionMessageCommand.cs" />
+    <Compile Include="Common\Caliburn\GestureMenuItem.cs" />
+    <Compile Include="Common\Caliburn\InputBindingTrigger.cs" />
+    <Compile Include="Common\CodeCompletion\CompletionItem.cs" />
+    <Compile Include="Common\CommandLine\Commands\Command.cs" />
+    <Compile Include="Common\CommandLine\Commands\FileCommand.cs" />
+    <Compile Include="Common\CommandLine\Commands\RunCommand.cs" />
+    <Compile Include="Common\CommandLine\Commands\TrayCommand.cs" />
+    <Compile Include="Common\CommandLine\IParser.cs" />
+    <Compile Include="Common\CommandLine\Parser.cs" />
+    <Compile Include="Common\Resources\ResourceHelper.cs" />
+    <Compile Include="Common\RichTextBox\RtfTextBox.cs" />
+    <Compile Include="Common\Strategies\ScriptDialogStrategy.cs" />
+    <Compile Include="Common\TrayIcon\ITrayIcon.cs" />
+    <Compile Include="Common\Visiblox\MovePointBehaviour.cs" />
+    <Compile Include="Events\ActiveScriptDocumentChangedEvent.cs" />
+    <Compile Include="Events\Command\CommandEvent.cs" />
+    <Compile Include="Events\Command\FileEvent.cs" />
+    <Compile Include="Events\Command\RunEvent.cs" />
+    <Compile Include="Events\Command\TrayEvent.cs" />
+    <Compile Include="Events\DeleteCurveEvent.cs" />
+    <Compile Include="Events\ScriptDocumentAddedEvent.cs" />
+    <Compile Include="Events\ExitingEvent.cs" />
+    <Compile Include="Events\ScriptEvent.cs" />
+    <Compile Include="Events\ScriptStateChangedEvent.cs" />
+    <Compile Include="Events\ScriptUpdatedEvent.cs" />
+    <Compile Include="Events\StartedEvent.cs" />
+    <Compile Include="Result\CancelResult.cs" />
+    <Compile Include="Result\CloseAppResult.cs" />
+    <Compile Include="Result\CloseResult.cs" />
+    <Compile Include="Result\FileDialogResult.cs" />
+    <Compile Include="Result\IResultFactory.cs" />
+    <Compile Include="Result\MessageBoxResult.cs" />
+    <Compile Include="Result\Result.cs" />
+    <Compile Include="Result\ResultFactory.cs" />
+    <Compile Include="Result\ShowDialogResult.cs" />
+    <Compile Include="Shells\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shells\AboutViewModel.cs" />
+    <Compile Include="Shells\Curves\CurveSettingsView.xaml.cs">
+      <DependentUpon>CurveSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shells\Curves\CurveSettingsViewModel.cs" />
+    <Compile Include="Common\AvalonDock\IDockingManagerSource.cs" />
+    <Compile Include="Shells\Curves\NewCurveView.xaml.cs">
+      <DependentUpon>NewCurveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shells\Curves\NewCurveViewModel.cs" />
+    <Compile Include="Shells\MainShellViewModel.cs" />
+    <Compile Include="Shells\PluginHelpView.xaml.cs">
+      <DependentUpon>PluginHelpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shells\PluginHelpViewModel.cs" />
+    <Compile Include="Shells\PluginSettingsView.xaml.cs">
+      <DependentUpon>PluginSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shells\PluginSettingsViewModel.cs" />
+    <Compile Include="Shells\ShellPresentationModel.cs" />
+    <Compile Include="Views\Curves\CurveView.xaml.cs">
+      <DependentUpon>CurveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Curves\CurveViewModel.cs" />
+    <Compile Include="Views\Main\MainMenuView.xaml.cs">
+      <DependentUpon>MainMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\MainMenuViewModel.cs" />
+    <Compile Include="Views\Main\PanelViewModel.cs" />
+    <Compile Include="Views\Main\SettingsLoaderViewModel.cs" />
+    <Compile Include="Views\Main\TrayIconView.xaml.cs">
+      <DependentUpon>TrayIconView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\TrayIconViewModel.cs" />
+    <Compile Include="Views\Plugin\PluginHelpFileViewModel.cs" />
+    <Compile Include="Views\Plugin\PluginPropertyView.xaml.cs">
+      <DependentUpon>PluginPropertyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Plugin\PluginPropertyViewModel.cs" />
+    <Compile Include="Views\Plugin\PluginSettingsMenuViewModel.cs" />
+    <Compile Include="Views\Plugin\PropertyValueTypes\BoolPropertyView.xaml.cs">
+      <DependentUpon>BoolPropertyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Plugin\PropertyValueTypes\BoolPropertyViewModel.cs" />
+    <Compile Include="Views\Plugin\PropertyValueTypes\ChoicesPropertyViewModel.cs" />
+    <Compile Include="Views\Plugin\PropertyValueTypes\ChoicesPropertyView.xaml.cs">
+      <DependentUpon>ChoicesPropertyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Plugin\PropertyValueTypes\TextPropertyView.xaml.cs">
+      <DependentUpon>TextPropertyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Plugin\PropertyValueTypes\TextPropertyViewModel.cs" />
+    <Compile Include="Views\Plugin\PropertyValueTypes\ValueViewModel.cs" />
+    <Compile Include="Views\Script\Output\ConsoleView.xaml.cs">
+      <DependentUpon>ConsoleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Script\Output\ConsoleViewModel.cs" />
+    <Compile Include="Views\Script\Output\ErrorsView.xaml.cs">
+      <DependentUpon>ErrorsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Script\Output\ErrorsViewModel.cs" />
+    <Compile Include="Views\Script\Output\ErrorViewModel.cs" />
+    <Compile Include="Views\Script\Output\WatchesView.xaml.cs">
+      <DependentUpon>WatchesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Script\Output\WatchesViewModel.cs" />
+    <Compile Include="Views\Script\Output\WatchViewModel.cs" />
+    <Compile Include="Views\Script\ScriptEditorView.xaml.cs">
+      <DependentUpon>ScriptEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Script\ScriptEditorViewModel.cs" />
+    <Page Include="Shells\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shells\Curves\CurveSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shells\Curves\NewCurveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shells\MainShellView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bootstrap\BootStrapper.cs" />
+    <Compile Include="Shells\MainShellView.xaml.cs">
+      <DependentUpon>MainShellView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Shells\PluginHelpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shells\PluginSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ExpressionDark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Curves\CurveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\MainMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\TrayIconView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Plugin\PluginPropertyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Plugin\PropertyValueTypes\BoolPropertyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Plugin\PropertyValueTypes\ChoicesPropertyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Plugin\PropertyValueTypes\TextPropertyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Script\Output\ConsoleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Script\Output\ErrorsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Script\Output\WatchesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Script\ScriptEditorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\AvalonEdit\Python.xshd" />
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FreePIE.Core.Contracts\FreePIE.Core.Contracts.csproj">
+      <Project>{58285BD6-810D-4BBD-8249-230C3B0AC76F}</Project>
+      <Name>FreePIE.Core.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FreePIE.Core.Plugins\FreePIE.Core.Plugins.csproj">
+      <Project>{65D8F959-C4AD-4EC9-9EFA-9EBB9D8CA7CB}</Project>
+      <Name>FreePIE.Core.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FreePIE.Core\FreePIE.Core.csproj">
+      <Project>{BCF7160F-9CB9-46E5-91CA-EE15E1D5ED54}</Project>
+      <Name>FreePIE.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FreePIE.GUI.CodeCompletion\FreePIE.GUI.CodeCompletion.csproj">
+      <Project>{8487DD8C-896C-4597-A377-5620DCA04C62}</Project>
+      <Name>FreePIE.GUI.CodeCompletion</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\about-16.png" />
+    <Resource Include="Resources\exit-16.png" />
+    <Resource Include="Resources\open-16.png" />
+    <Resource Include="Resources\play-16.png" />
+    <Resource Include="Resources\save-16.png" />
+    <Resource Include="Resources\save-as-16.png" />
+    <Resource Include="Resources\settings-16.png" />
+    <Resource Include="Resources\stop-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\curve-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="free-pie.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\help-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\delete-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\copy-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\console-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\error-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\watch-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\paste-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\cut-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\new-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\exception-16.png" />
+    <Resource Include="Resources\warning-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\find-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\next-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prev-16.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>md "$(TargetDir)plugins"
+
+md "$(TargetDir)help"
+copy "$(SolutionDir)\FreePIE.Core.Plugins\Help\*.rtf" "$(TargetDir)help"
+xcopy /S /I "$(SolutionDir)\Lib\IronPython\pylib\*" "$(TargetDir)pylib\"
+copy "$(SolutionDir)\Lib\TrackIR\NPClient.dll" "$(TargetDir)"
+copy "$(SolutionDir)\Lib\Wiimote\*.*" "$(TargetDir)"
+rem copy "$(SolutionDir)\Lib\PPJoyWrapper\*.*" "$(TargetDir)"
+rem copy "$(SolutionDir)\Lib\SlimDX\*.*" "$(TargetDir)"
+copy "$(SolutionDir)\Lib\piefreespace\*.dll" "$(TargetDir)"
+copy "$(SolutionDir)\Lib\Falcon4\*.dll" "$(TargetDir)"
+copy "$(SolutionDir)\Lib\Sixense\*.dll" "$(TargetDir)"
+copy "$(SolutionDir)\Lib\FreeTrack\*.dll" "$(TargetDir)"
+copy "$(SolutionDir)\Lib\Zeiss\*.dll" "$(TargetDir)"
+copy "$(SolutionDir)\Lib\YEI3-Space\*.dll" "$(TargetDir)"
+copy "$(SolutionDir)\Lib\IO\Binaries\Release-DllMultiThreadRuntime\*.dll" "$(TargetDir)"
+copy "$(SolutionDir)\Lib\OculusVR\Binaries\*.dll" "$(TargetDir)"
+copy "$(SolutionDir)\Lib\VJoy\*.dll" "$(TargetDir)"
+copy "$(SolutionDir)\Lib\Midi\*.dll" "$(TargetDir)"
+copy "$(SolutionDir)\Lib\Tobii\*.dll" "$(TargetDir)"
+
+copy "$(TargetDir)FreePie.exe" "..\..\..\..\..\FreePie\"
+copy "$(TargetDir)FreePIE.Core.dll" "..\..\..\..\..\FreePie\"
+copy "$(TargetDir)FreePIE.Core.Plugins.dll" "..\..\..\..\..\FreePie\plugins\"</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
