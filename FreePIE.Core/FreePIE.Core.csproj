@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BCF7160F-9CB9-46E5-91CA-EE15E1D5ED54}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FreePIE.Core</RootNamespace>
+    <AssemblyName>FreePIE.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IronPython, Version=2.7.5.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\IronPython\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules, Version=2.7.5.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\IronPython\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\IronPython\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\IronPython\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Common\Events\EventAggregator.cs" />
+    <Compile Include="Common\Events\IHandle.cs" />
+    <Compile Include="Common\Events\WeakReferenceList.cs" />
+    <Compile Include="Common\Extensions\CollectionExtensions.cs" />
+    <Compile Include="Common\Extensions\StringExtensions.cs" />
+    <Compile Include="Common\Extensions\TypeExtensions.cs" />
+    <Compile Include="Common\FileSystem.cs" />
+    <Compile Include="Common\Events\IEventAggregator.cs" />
+    <Compile Include="Common\IFileSystem.cs" />
+    <Compile Include="Common\CurveMath.cs" />
+    <Compile Include="Common\ILog.cs" />
+    <Compile Include="Common\InterlockableBool.cs" />
+    <Compile Include="Common\Log.cs" />
+    <Compile Include="Common\Range.cs" />
+    <Compile Include="Common\Utils.cs" />
+    <Compile Include="Model\Choice.cs" />
+    <Compile Include="Model\Choices.cs" />
+    <Compile Include="Model\Events\CurveChangedNameEvent.cs" />
+    <Compile Include="Model\Events\ScriptErrorEvent.cs" />
+    <Compile Include="Model\Events\TrayNotificationEvent.cs" />
+    <Compile Include="Model\Events\WatchEvent.cs" />
+    <Compile Include="Model\PluginProperty.cs" />
+    <Compile Include="Model\PluginSetting.cs" />
+    <Compile Include="Model\Settings.cs" />
+    <Compile Include="Persistence\Paths\IPaths.cs" />
+    <Compile Include="Persistence\IPersistanceManager.cs" />
+    <Compile Include="Persistence\Paths\IPortable.cs" />
+    <Compile Include="Persistence\Paths\Paths.cs" />
+    <Compile Include="Persistence\Paths\Portable.cs" />
+    <Compile Include="Persistence\Paths\PortablePaths.cs" />
+    <Compile Include="Persistence\Paths\UacCompliantPaths.cs" />
+    <Compile Include="Persistence\PersistanceManager.cs" />
+    <Compile Include="Plugins\IPluginInvoker.cs" />
+    <Compile Include="Plugins\PluginInvoker.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptEngine\CodeCompletion\CodeCompletionProvider.cs" />
+    <Compile Include="ScriptEngine\CodeCompletion\CodeCompletionResult.cs" />
+    <Compile Include="ScriptEngine\CodeCompletion\IndexedToken.cs" />
+    <Compile Include="ScriptEngine\CodeCompletion\Token.cs" />
+    <Compile Include="ScriptEngine\CodeCompletion\TokenInfo.cs" />
+    <Compile Include="ScriptEngine\CodeCompletion\TokenType.cs" />
+    <Compile Include="ScriptEngine\CodeCompletion\TokenResult.cs" />
+    <Compile Include="ScriptEngine\CodeCompletion\ExpressionInfo.cs" />
+    <Compile Include="ScriptEngine\CodeCompletion\IndexedExpressionInfo.cs" />
+    <Compile Include="ScriptEngine\CodeCompletion\InfoTransformHelper.cs" />
+    <Compile Include="ScriptEngine\CodeCompletion\IRuntimeInfoProvider.cs" />
+    <Compile Include="Model\Node.cs" />
+    <Compile Include="ScriptEngine\CodeCompletion\RuntimeInfoProvider.cs" />
+    <Compile Include="ScriptEngine\Globals\GlobalsInfo.cs" />
+    <Compile Include="ScriptEngine\Globals\CurveGlobalProvider.cs" />
+    <Compile Include="ScriptEngine\Globals\IGlobalProvider.cs" />
+    <Compile Include="ScriptEngine\Globals\ScriptHelpersGlobalProvider.cs" />
+    <Compile Include="ScriptEngine\Globals\ScriptHelpers\DiagnosticHelper.cs" />
+    <Compile Include="ScriptEngine\Globals\ScriptHelpers\FilterHelper.cs" />
+    <Compile Include="ScriptEngine\Globals\ScriptHelpers\IScriptHelper.cs" />
+    <Compile Include="ScriptEngine\Globals\ScriptHelpers\Strategies\ContinuesRotationStrategy.cs" />
+    <Compile Include="ScriptEngine\Globals\ScriptHelpers\SystemHelper.cs" />
+    <Compile Include="ScriptEngine\ICodeCompletionProvider.cs" />
+    <Compile Include="ScriptEngine\IScriptEngine.cs" />
+    <Compile Include="ScriptEngine\IScriptParser.cs" />
+    <Compile Include="ScriptEngine\Python\PythonScriptEngine.cs" />
+    <Compile Include="ScriptEngine\Python\PythonScriptParser.cs" />
+    <Compile Include="ScriptEngine\ThreadTiming\IThreadTimingFactory.cs" />
+    <Compile Include="ScriptEngine\ThreadTiming\Strategies\BeginPeriodSystemTimerStrategy.cs" />
+    <Compile Include="ScriptEngine\ThreadTiming\Strategies\ThreadYieldMicroSecondsStrategy.cs" />
+    <Compile Include="ScriptEngine\ThreadTiming\Strategies\TimingTypes.cs" />
+    <Compile Include="ScriptEngine\ThreadTiming\Strategies\SystemTimerStrategy.cs" />
+    <Compile Include="ScriptEngine\ThreadTiming\Strategies\Timing.cs" />
+    <Compile Include="ScriptEngine\ThreadTiming\Strategies\TimingAttribute.cs" />
+    <Compile Include="ScriptEngine\ThreadTiming\Strategies\YieldThreadStrategy.cs" />
+    <Compile Include="ScriptEngine\ThreadTiming\ThreadTimingFactory.cs" />
+    <Compile Include="Services\ServiceBootstrapper.cs" />
+    <Compile Include="Model\Curve.cs" />
+    <Compile Include="Persistence\ISettingsManager.cs" />
+    <Compile Include="Persistence\SettingsManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FreePIE.Core.Contracts\FreePIE.Core.Contracts.csproj">
+      <Project>{58285BD6-810D-4BBD-8249-230C3B0AC76F}</Project>
+      <Name>FreePIE.Core.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>cd "$(SolutionDir)BuildTools"
+"$(MSBuildBinPath)\msbuild" write_VersionInfo.xml</PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
