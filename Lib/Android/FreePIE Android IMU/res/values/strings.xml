@@ -1,0 +1,18 @@
+<resources>
+
+    <string name="app_name">FreePIE IMU</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">FreePIE IMU</string>
+    <string name="target_ip">Target IP</string>
+    <string name="target_port">Target port</string>
+    <string name="start">Start</string>
+    <string name="send_raw">Send raw data</string>
+    <string name="send_orientation">Send orientation</string>
+    <string name="acc">Accelerometer</string>
+    <string name="debug">Debug</string>
+    <string name="gyr">Gyro</string>
+    <string name="mag">Magnetometer</string>
+    <string name="imu">Orientation</string>
+    <string name="index">Index</string>
+
+</resources>
