@@ -458,7 +458,9 @@ namespace FreePIE.Core.Plugins
         {
             return System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.Scroll);
         }
-
+        public bool IsSingleClicked(int keycode) => getKeyPressedStrategy.IsSingleClicked(keycode);
+        public bool IsDoubleClicked(int keycode) => getKeyPressedStrategy.IsDoubleClicked(keycode);
+        public bool IsHeldDown(int keycode, int lapse) => getKeyPressedStrategy.IsHelDowned(keycode, IsKeyDown(keycode), lapse);
         public bool IsKeyDown(int keycode, bool value = false)
         {
             // Returns true if the key is currently being pressed
@@ -578,6 +580,14 @@ namespace FreePIE.Core.Plugins
 
  //   diagnostics.watch(keyboard.intTOkey(181))
         }
+
+        // ****************** key single or double clicked ************************************
+        public bool getClicked<T>(T key, bool dblclick = false)
+        {
+            return dblclick ? plugin.IsDoubleClicked(Convert.ToInt32(key)) : plugin.IsSingleClicked(Convert.ToInt32(key));
+        }
+        // ****************** button Helddown ************************************
+        public bool getHeldDown<T>(T key, int duration) => plugin.IsHeldDown(Convert.ToInt32(key), duration);
         public string getNamekey(int i)
         {
             return Enum.GetName(typeof(Key), i);

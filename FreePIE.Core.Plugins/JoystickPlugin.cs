@@ -273,6 +273,8 @@ namespace FreePIE.Core.Plugins
         public bool getReleased(int button) => device.IsReleased(button);
 
         public bool getReleasedBip(int button, int frequency, int duration = 300) => getReleased(button).PlaySound(frequency, duration);
+
+        // ****************** button single or double clicked ************************************
         public bool getClicked(int button, bool dblclick = false)
         {
             return dblclick ? device.IsDoubleClicked(button) : device.IsSingleClicked(button);
@@ -281,6 +283,8 @@ namespace FreePIE.Core.Plugins
         {
             return getClicked(button, dblclick).PlaySound(frequency, duration);
         }
+
+        // ****************** button Helddown ************************************
         public bool getHeldDown(int button, int duration) => device.IsHeldDown(button, duration);
 
         // ****************** button getXstates in list, down, pressed and released **

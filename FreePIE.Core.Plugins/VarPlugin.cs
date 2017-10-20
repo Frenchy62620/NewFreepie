@@ -227,35 +227,16 @@ namespace FreePIE.Core.Plugins
         //    return -1;
         //}
 
-        // *************** sglClicked **************************************************************
+        // *************** single ou double Clicked **************************************************************
         [NeedIndexer]
-        public bool sglClickedBip(bool value, int frequency, int duration, string indexer)
-        {
-            //return plugin.IsSingleClicked(value, "%1" + indexer).PlaySound(frequency, duration);
-            return plugin.IsSingleClicked(value, indexer).PlaySound(frequency, duration);
-        }
-        [NeedIndexer]
-        public bool sglClicked(bool value, string indexer)
-        {
-            //return plugin.IsSingleClicked(value, "%1" + indexer);
-            return plugin.IsSingleClicked(value, indexer);
-        }
-       // *************** dblClicked **************************************************************        
-       [NeedIndexer]
-       public bool dblClickedBip(bool value, int frequency, int duration, string indexer)
-       {
-           //return (plugin.IsDoubleClicked(value, "%2" + indexer).PlaySound(frequency, duration));
-           return (plugin.IsDoubleClicked(value, indexer).PlaySound(frequency, duration));
-       }
-       [NeedIndexer]
-       public bool dblClicked(bool value, string indexer)
-       {
-           //return plugin.IsDoubleClicked(value, "%2" + indexer);
-           return plugin.IsDoubleClicked(value, indexer);
-       }
         public bool getClicked(bool value, bool doubleclick, string indexer)
         {
             return doubleclick ? plugin.IsDoubleClicked(value, indexer) : plugin.IsSingleClicked(value, indexer);
+        }
+        [NeedIndexer]
+        public bool getClickedBip(bool value, bool doubleclick, int frequency, int duration, string indexer)
+        {
+            return doubleclick ? plugin.IsDoubleClicked(value, indexer).PlaySound(frequency, duration) : plugin.IsSingleClicked(value, indexer).PlaySound(frequency, duration);
         }
         // *************** heldDown **************************************************************
         [NeedIndexer]
