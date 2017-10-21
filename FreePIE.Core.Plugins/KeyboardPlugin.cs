@@ -682,9 +682,10 @@ namespace FreePIE.Core.Plugins
         {
             plugin.PressAndRelease(Convert.ToInt32(key));
         }
-        public void setPressed<T>(IList<T> keys, bool state = true)
+
+        // Key(s) to press one time only
+        public void setPressed<T>(IList<T> keys, bool state)
         {
-            if (keys == null || !state) return;
             foreach (var k in keys)
                 plugin.PressAndRelease(Convert.ToInt32(k), state);
         }
