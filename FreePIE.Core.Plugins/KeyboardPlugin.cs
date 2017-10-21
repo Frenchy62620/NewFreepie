@@ -632,7 +632,7 @@ namespace FreePIE.Core.Plugins
             setKey(keys, true);
             return k;
         }
-        // direction Pov to key
+        // direction Pov to list of key(s)
         public List<Key> getKeyFromPov(int direction, params IList<Key>[] keys)
         {
             if (direction < 0 || direction > 3) return null;
@@ -651,67 +651,6 @@ namespace FreePIE.Core.Plugins
                 default:
                     throw new Exception($"Number of list: {keys.Length}. Just only 1 or 4 lists of Keys.");
             }
-            return keycursor;
-        }
-        //direction to keys
-        //public List<Key> setKeyDown(int direction, params IList<Key>[] keys)
-        //{
-        //    if (direction < 0) return null;
-        //    int d1 = direction, d2 = -1;
-
-        //    if (d1 > 3)
-        //    {
-        //        d1 = direction - 4;
-        //        d2 = (direction - 3) % 4;
-        //    }
-        //    List<Key> keycursor = new List<Key>();
-
-        //    switch (keys.Length)
-        //    {
-        //        case 1:
-        //            keycursor.Add(keys[0][d1]);
-        //            if (d2 >= 0) keycursor.Add(keys[0][d2]);
-        //            break;
-        //        case 4:
-        //            foreach (var ky in keys[d1])
-        //                keycursor.Add(ky);
-        //            if (d2 >= 0)
-        //            {
-        //                foreach (var ky in keys[d2])
-        //                    keycursor.Add(ky);
-        //            }
-        //            break;
-        //        default:
-        //            throw new Exception($"Number of list: {keys.Length}. Just only 1 or 4 lists of Keys.");
-        //    }
-        //    setKey(keycursor, true);
-        //    keycursor.Reverse();
-        //    return keycursor;
-        //}
-        //direction to keys
-        public List<Key> setKeyDown(IList<bool> values, params IList<Key>[] keys)
-        {
-            int [] d = { values[0] ? 0 : values[2] ? 2 : -1, values[1] ? 1 : values[3] ? 3 : -1};
-            if (d[0] < 0 && d[1] < 0) return null;
-            List<Key> keycursor = new List<Key>();
-
-            switch (keys.Length)
-            {
-                case 1:
-                    for (int i = 0; i < 2; i++ )
-                        if (d[i] >= 0) keycursor.Add(keys[0][d[i]]);
-                    break;
-                case 4:
-                    for (int i = 0; i < 2; i++)
-                        if (d[i] >= 0)
-                            foreach (var k in keys[d[i]]) 
-                                keycursor.Add(k);
-                    break;
-                default:
-                    throw new Exception($"Number of list: {keys.Length}. Just only 1 or 4 lists of Keys.");
-            }
-            //setKey(keycursor, true);
-            //keycursor.Reverse();
             return keycursor;
         }
         public void setKeyUp(Key key)
@@ -785,30 +724,5 @@ namespace FreePIE.Core.Plugins
         {
             return Gx.keystyped;
         }
-        //public void setPressedLong(IList<Key> keys, int time)
-        //{
-        //    List<int> ki = new List<int>();
-        //    foreach (var k in keys)
-        //        ki.Add((int)k);
-        //    StringBuilder cmd = new StringBuilder("KD;", 128);
-        //    for (int i = 0; i< ki.Count; i++)
-        //    {
-        //        cmd.Append(ki[i]);
-        //        if (i != ki.Count - 1)
-        //            cmd.Append(":");
-        //    }
-        //    cmd.AppendFormat("!T0;{0}!KU;", time);
-        //    for (int i = ki.Count - 1; i >= 0; i--)
-        //    {
-        //        cmd.Append(ki[i]);
-        //        if (i != 0)
-        //            cmd.Append(":");
-        //    }
-        //    cmd.ToString().DecodelineOfCommand(section: null, priority: 0);
-        //}
-        //public void recordKeys(string cmd, int priority = 0)
-        //{
-        //    cmd.DecodelineOfCommand(section: null, priority: priority);
-        //}
     }
 }
