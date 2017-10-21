@@ -179,7 +179,15 @@ namespace FreePIE.Core.Plugins
         WebStop = 142,
         Yen = 143,
         Unknown = 144,
-
+        // AZERTY
+        //    { (int)Key.A, (int)Key.Q},
+        //    { (int)Key.Q, (int)Key.A},
+        //    { (int)Key.Z, (int)Key.W},
+        //    { (int)Key.W, (int)Key.Z},
+        //    { (int)Key.Semicolon, (int)Key.M},
+        //    { (int)Key.Comma, (int)Key.Semicolon},
+        //    { (int)Key.M, (int)Key.Comma}
+        aA = Q, aQ = A, aZ = W, aW = Z, aSemicolon = M, aComma = Semicolon, aM = Comma
     }
 
     //[GlobalEnum]
@@ -366,6 +374,7 @@ namespace FreePIE.Core.Plugins
         //    { (int)Key.Comma, (int)Key.Semicolon},
         //    { (int)Key.M, (int)Key.Comma}
         //};
+        
         private DirectInput DirectInputInstance = new DirectInput();
         private Keyboard KeyboardDevice;
         private KeyboardState KeyState = new KeyboardState();
@@ -538,32 +547,24 @@ namespace FreePIE.Core.Plugins
     [Global(Name = "keyboard")]
     public class KeyboardGlobal 
     {
-        private bool azerty_t, azerty_s;
+        //private bool azerty_t, azerty_s;
         private readonly KeyboardPlugin plugin;
         public KeyboardGlobal(KeyboardPlugin plugin)
         {
             this.plugin = plugin;
         }
 
-        //public KeyboardGlobal(bool azerty_get)
+        //public bool azerty_test
         //{
-        //    this.azerty_get = azerty_get;
+        //    get { return azerty_t; }
+        //    set { azerty_t = value; }
+        //}
+        //public bool azerty_send
+        //{
+        //    get { return azerty_s; }
+        //    set { azerty_s = value; }
         //}
 
-        public bool azerty_test
-        {
-            get { return azerty_t; }
-            set { azerty_t = value; }
-        }
-        public bool azerty_send
-        {
-            get { return azerty_s; }
-            set { azerty_s = value; }
-        }
-        //public void azerty()
-        //{
-        //    plugin.azerty();
-        //}
         //----------------------- special key -----------------------------------------------------------
         public bool xShift => plugin.IsKeyDown((int)Key.LeftShift) || plugin.IsKeyDown((int)Key.RightShift);
         public bool xControl => plugin.IsKeyDown((int)Key.LeftControl) || plugin.IsKeyDown((int)Key.RightControl);
@@ -575,10 +576,6 @@ namespace FreePIE.Core.Plugins
             //string e = ((Key)key).ToString();
             //string t = Enum.GetName(typeof(Key), key);
             return (Key)key;
- //           if keyboard.getPressed(Key.NumberPadSlash):
-	//beep.play(1000, 300)
-
- //   diagnostics.watch(keyboard.intTOkey(181))
         }
 
         // ****************** key single or double clicked ************************************
