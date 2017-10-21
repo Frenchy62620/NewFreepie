@@ -609,9 +609,9 @@ namespace FreePIE.Core.Plugins
                 if (!plugin.IsKeyDown(Convert.ToInt32(key))) return false;
             return true;
         }
-        public bool getUp(Key key)
+        public bool getUp<T>(T key)
         {
-            return plugin.IsKeyUp((int)key);
+            return plugin.IsKeyUp(Convert.ToInt32(key));
         }
         public bool getPressed<T>(T key)
         {
