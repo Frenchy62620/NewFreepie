@@ -596,7 +596,7 @@ namespace FreePIE.Core.Plugins
         //{
         //    return plugin.IsKeyDown((int) key);
         //}
-        public bool getKeyDown<T>(T key) where T : struct
+        public bool getDown<T>(T key) where T : struct
         {
             return plugin.IsKeyDown(Convert.ToInt32(key));
         }
@@ -606,13 +606,13 @@ namespace FreePIE.Core.Plugins
         //         if (!plugin.IsKeyDown((int)key)) return false;
         //    return true;
         //}
-        public bool getKeyDown<T>(IList<T> keys)
+        public bool getDown<T>(IList<T> keys)
         {
             foreach (var key in keys)
                 if (!plugin.IsKeyDown(Convert.ToInt32(key))) return false;
             return true;
         }
-        public bool getKeyUp(Key key)
+        public bool getUp(Key key)
         {
             return plugin.IsKeyUp((int)key);
         }
