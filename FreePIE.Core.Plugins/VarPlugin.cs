@@ -240,7 +240,7 @@ namespace FreePIE.Core.Plugins
         }
         // *************** heldDown **************************************************************
         [NeedIndexer]
-       public bool heldDown(bool value, int lapse, string indexer)
+       public bool getHeldDown(bool value, int lapse, string indexer)
        {
            return plugin.IsHeldDown(value, lapse, indexer);
        }
