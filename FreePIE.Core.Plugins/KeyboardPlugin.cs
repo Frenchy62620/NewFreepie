@@ -578,11 +578,11 @@ namespace FreePIE.Core.Plugins
             return (Key)key;
         }
 
-        // ****************** key single or double clicked ************************************
-        public bool getClicked<T>(T key, bool dblclick = false)
-        {
-            return dblclick ? plugin.IsDoubleClicked(Convert.ToInt32(key)) : plugin.IsSingleClicked(Convert.ToInt32(key));
-        }
+        //// ****************** key single or double clicked ************************************
+        //public bool getClicked<T>(T key, bool dblclick = false)
+        //{
+        //    return dblclick ? plugin.IsDoubleClicked(Convert.ToInt32(key)) : plugin.IsSingleClicked(Convert.ToInt32(key));
+        //}
         // ****************** button Helddown ************************************
         public bool getHeldDown<T>(T key, int duration) => plugin.IsHeldDown(Convert.ToInt32(key), duration);
         public string getNamekey(int i)
@@ -597,12 +597,7 @@ namespace FreePIE.Core.Plugins
         {
             return plugin.IsKeyDown(Convert.ToInt32(key));
         }
-        //public bool getKeyDown(IList<Key> keys)
-        //{
-        //    foreach(var key in keys)
-        //         if (!plugin.IsKeyDown((int)key)) return false;
-        //    return true;
-        //}
+
         public bool getDown<T>(IList<T> keys)
         {
             foreach (var key in keys)
@@ -637,42 +632,62 @@ namespace FreePIE.Core.Plugins
             setKey(keys, true);
             return k;
         }
-
-        //direction to keys
-        public List<Key> setKeyDown(int direction, params IList<Key>[] keys)
+        // direction Pov to key
+        public List<Key> getKeyFromPov(int direction, params IList<Key>[] keys)
         {
-            if (direction < 0) return null;
-            int d1 = direction, d2 = -1;
+            if (direction < 0 || direction > 3) return null;
 
-            if (d1 > 3)
-            {
-                d1 = direction - 4;
-                d2 = (direction - 3) % 4;
-            }
             List<Key> keycursor = new List<Key>();
 
             switch (keys.Length)
             {
                 case 1:
-                    keycursor.Add(keys[0][d1]);
-                    if (d2 >= 0) keycursor.Add(keys[0][d2]);
+                    keycursor.Add(keys[0][direction]);
                     break;
                 case 4:
-                    foreach (var ky in keys[d1])
+                    foreach (var ky in keys[direction])
                         keycursor.Add(ky);
-                    if (d2 >= 0)
-                    {
-                        foreach (var ky in keys[d2])
-                            keycursor.Add(ky);
-                    }
                     break;
                 default:
                     throw new Exception($"Number of list: {keys.Length}. Just only 1 or 4 lists of Keys.");
             }
-            setKey(keycursor, true);
-            keycursor.Reverse();
             return keycursor;
         }
+        //direction to keys
+        //public List<Key> setKeyDown(int direction, params IList<Key>[] keys)
+        //{
+        //    if (direction < 0) return null;
+        //    int d1 = direction, d2 = -1;
+
+        //    if (d1 > 3)
+        //    {
+        //        d1 = direction - 4;
+        //        d2 = (direction - 3) % 4;
+        //    }
+        //    List<Key> keycursor = new List<Key>();
+
+        //    switch (keys.Length)
+        //    {
+        //        case 1:
+        //            keycursor.Add(keys[0][d1]);
+        //            if (d2 >= 0) keycursor.Add(keys[0][d2]);
+        //            break;
+        //        case 4:
+        //            foreach (var ky in keys[d1])
+        //                keycursor.Add(ky);
+        //            if (d2 >= 0)
+        //            {
+        //                foreach (var ky in keys[d2])
+        //                    keycursor.Add(ky);
+        //            }
+        //            break;
+        //        default:
+        //            throw new Exception($"Number of list: {keys.Length}. Just only 1 or 4 lists of Keys.");
+        //    }
+        //    setKey(keycursor, true);
+        //    keycursor.Reverse();
+        //    return keycursor;
+        //}
         //direction to keys
         public List<Key> setKeyDown(IList<bool> values, params IList<Key>[] keys)
         {
@@ -695,8 +710,8 @@ namespace FreePIE.Core.Plugins
                 default:
                     throw new Exception($"Number of list: {keys.Length}. Just only 1 or 4 lists of Keys.");
             }
-            setKey(keycursor, true);
-            keycursor.Reverse();
+            //setKey(keycursor, true);
+            //keycursor.Reverse();
             return keycursor;
         }
         public void setKeyUp(Key key)
