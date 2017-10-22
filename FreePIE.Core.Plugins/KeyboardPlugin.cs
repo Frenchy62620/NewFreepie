@@ -470,7 +470,7 @@ namespace FreePIE.Core.Plugins
         public bool IsSingleClicked(int keycode) => getKeyPressedStrategy.IsSingleClicked(keycode);
         public bool IsDoubleClicked(int keycode) => getKeyPressedStrategy.IsDoubleClicked(keycode);
         public bool IsHeldDown(int keycode, int lapse) => getKeyPressedStrategy.IsHelDowned(keycode, IsKeyDown(keycode), lapse);
-        public int IsHeldDown(int keycode, long [] lapse) => getKeyPressedStrategy.IsHelDowned1(keycode, IsKeyDown(keycode), lapse);
+        public int IsHeldDown(int keycode, long [] lapse) => getKeyPressedStrategy.IsHelDowned(keycode, IsKeyDown(keycode), lapse);
         public bool IsKeyDown(int keycode, bool value = false)
         {
             // Returns true if the key is currently being pressed
