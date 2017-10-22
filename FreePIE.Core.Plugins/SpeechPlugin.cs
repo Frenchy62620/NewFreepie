@@ -26,6 +26,7 @@ namespace FreePIE.Core.Plugins
         private List<string> grammarName;
         public override object CreateGlobal()
         {
+            Gx.speechplugin = this;
             return new SpeechGlobal(this);
         }
 

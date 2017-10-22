@@ -470,6 +470,7 @@ namespace FreePIE.Core.Plugins
         public bool IsSingleClicked(int keycode) => getKeyPressedStrategy.IsSingleClicked(keycode);
         public bool IsDoubleClicked(int keycode) => getKeyPressedStrategy.IsDoubleClicked(keycode);
         public bool IsHeldDown(int keycode, int lapse) => getKeyPressedStrategy.IsHelDowned(keycode, IsKeyDown(keycode), lapse);
+        public int IsHeldDown(int keycode, long [] lapse) => getKeyPressedStrategy.IsHelDowned1(keycode, IsKeyDown(keycode), lapse);
         public bool IsKeyDown(int keycode, bool value = false)
         {
             // Returns true if the key is currently being pressed
@@ -585,6 +586,21 @@ namespace FreePIE.Core.Plugins
         //}
         // ****************** button Helddown ************************************
         public bool getHeldDown<T>(T key, int duration) => plugin.IsHeldDown(Convert.ToInt32(key), duration);
+        public int getHeldDown<T>(T key, IList<int> duration)
+        {
+            long[] durations = new long[duration.Count];
+            for (int i = 0; i < duration.Count; i++)
+                durations[i] = duration[i];
+            int ret = plugin.IsHeldDown(Convert.ToInt32(key), durations);
+            if (ret >= 10)
+            {
+                ret /= 10;
+                if (Gx.speechplugin != null)
+                    Gx.speechplugin.Say(ret.ToString());
+                return -1;
+            }
+            return ret;
+        }
         public string getNamekey(int i)
         {
             return Enum.GetName(typeof(Key), i);
