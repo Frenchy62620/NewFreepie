@@ -29,7 +29,7 @@ namespace FreePIE.Core.Plugins.Extensions
         public static string keystyped;
         public static string keystosay;
         public static Dictionary<char, List<MethodInfo>> dico_mi;
-        public static SpeechPlugin SP;
+
         static GlobalExtensionMethods()
         {
             lapse_singleclick = 300;
