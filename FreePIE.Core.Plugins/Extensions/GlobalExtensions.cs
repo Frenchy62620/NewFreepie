@@ -29,17 +29,17 @@ namespace FreePIE.Core.Plugins.Extensions
         public static string keystyped;
         public static string keystosay;
         public static Dictionary<char, List<MethodInfo>> dico_mi;
-
-        static  GlobalExtensionMethods()
+        public static SpeechPlugin SP;
+        static GlobalExtensionMethods()
         {
-            lapse_singleclick = 300;          
+            lapse_singleclick = 300;
             wd = new string[2];
             cmd = '\0';
             keystosay = keystyped = "";
             Ctime = 0;
             timer = -1;
         }
-// --------------------- Extension Executing Auto function -----------------------------------
+        // --------------------- Extension Executing Auto function -----------------------------------
         public static void AddListOfFct(Type t)
         {
             if (dico_mi == null)
@@ -90,6 +90,9 @@ namespace FreePIE.Core.Plugins.Extensions
         }
 
         // ----------- END ------- Extension Executing Auto function --------------------------
+
+        public static SpeechPlugin speechplugin {get; set; }
+
         public static int SearchPos(string str, string substr, int lg)
         {
             if (str.Contains('-'))
@@ -134,6 +137,8 @@ namespace FreePIE.Core.Plugins.Extensions
         }
         public static long GetLapse(this long time)
         {
+            if (time < 0)
+                return -1;
             return Utime.ElapsedMilliseconds - time;
         }
         public static void CheckScriptTimer()
