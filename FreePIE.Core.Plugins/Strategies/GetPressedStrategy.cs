@@ -120,7 +120,7 @@ namespace FreePIE.Core.Plugins.Strategies
             return false;
         }
 
-        public int IsHelDowned1(T code, bool value, long[] durations)
+        public int IsHelDowned(T code, bool value, long[] durations)
         {
             State val;
             if (!dico.TryGetValue(code, out val))
