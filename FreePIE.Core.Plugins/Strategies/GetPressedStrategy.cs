@@ -130,18 +130,18 @@ namespace FreePIE.Core.Plugins.Strategies
 
             if (value) // (isDown(code, value))
             {
-                if (dico[code].timer[2] < 0)
-                    dico[code].timer[2] = Gx.StartCount();
+                if (val.timer[2] < 0)
+                    val.timer[2] = Gx.StartCount();
                 else
                 {
-                    if (dico[code].timer[2] >= 0)
-                        return dico[code].timer[2].GetLapse() >= duration;
+                    if (val.timer[2] >= 0)
+                        return val.timer[2].GetLapse() >= duration;
                 }
             }
             else
             {
-                if (dico[code].timer[2] >= 0)
-                    dico[code].timer[2] = Gx.StopCount();
+                if (val.timer[2] >= 0)
+                    val.timer[2] = Gx.StopCount();
             }
             return false;
         }
@@ -152,6 +152,7 @@ namespace FreePIE.Core.Plugins.Strategies
             if (!dico.TryGetValue(code, out val))
             {
                 dico[code] = val = new State();
+                return -1;
             }
             int v;
             if (value) // key down(isDown(code, value))
