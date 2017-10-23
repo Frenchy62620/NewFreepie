@@ -27,18 +27,10 @@ namespace FreePIE.Core.Plugins
 
         public override string FriendlyName => "var";
 
-        public bool IsPressed(bool value, string indexer)
-        {
-            return getVarPressedStrategy.IsPressed(indexer, value);
-        }
-        public bool IsReleased(bool value, string indexer)
-        {
-            return getVarPressedStrategy.IsReleased(indexer, value);
-        }
-        public bool IsVarDown(string indexer, bool value)
-        {
-            return value;
-        }
+        public bool IsPressed(bool value, string indexer) => getVarPressedStrategy.IsPressed(indexer, value);
+        public bool IsReleased(bool value, string indexer) => getVarPressedStrategy.IsReleased(indexer, value);
+        public bool IsVarDown(string indexer, bool value) => value;
+
         //begin single and double click
 
         public void SetLapseSingleClick(int value)
@@ -46,19 +38,12 @@ namespace FreePIE.Core.Plugins
             Gx.lapse_singleclick = value;
         }
 
-        public bool IsSingleClicked(bool value, string indexer)
-        {
-            return getVarPressedStrategy.IsSingleClicked(indexer, value);
-        }
-        public bool IsDoubleClicked(bool value, string indexer)
-        {
-            return getVarPressedStrategy.IsDoubleClicked(indexer, value);
-        }
+        public bool IsSingleClicked(bool value, string indexer) => getVarPressedStrategy.IsSingleClicked(indexer, value);
+        public bool IsDoubleClicked(bool value, string indexer) => getVarPressedStrategy.IsDoubleClicked(indexer, value);
+
         //end single and double click
-        public bool IsHeldDown(bool value, int milliseconds, string indexer)
-        {
-            return getVarPressedStrategy.IsHelDowned(indexer, value, milliseconds);
-        }
+        public bool IsHeldDown(bool value, int milliseconds, string indexer) => getVarPressedStrategy.IsHelDowned(indexer, value, milliseconds);
+        public int IsHeldDown(bool value, long[] lapse, string indexer) => getVarPressedStrategy.IsHelDowned(indexer, value, lapse);
 
         public bool Repeat(bool value, int milliseconds, string indexer)
         {
@@ -244,6 +229,14 @@ namespace FreePIE.Core.Plugins
        {
            return plugin.IsHeldDown(value, lapse, indexer);
        }
+        [NeedIndexer]
+        public int getHeldDown(bool value, IList<int> duration, string indexer)
+        {
+            long[] durations = new long[duration.Count];
+            for (int i = 0; i < duration.Count; i++)
+                durations[i] = duration[i];
+            return plugin.IsHeldDown(value, durations, indexer);
+        }
 
         [NeedIndexer]
         public bool repeat(bool value, int lapse, string indexer)
