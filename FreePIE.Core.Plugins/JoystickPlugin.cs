@@ -218,7 +218,7 @@ namespace FreePIE.Core.Plugins
         public bool IsSingleClicked(int button) => getPressedStrategy.IsSingleClicked(button);
         public bool IsDoubleClicked(int button) => getPressedStrategy.IsDoubleClicked(button);
         public bool IsHeldDown(int button, int lapse) => getPressedStrategy.IsHelDowned(button, IsDown(button), lapse);
-
+        public int IsHeldDown(int button, long[] lapse) => getPressedStrategy.IsHelDowned(button, IsDown(button), lapse);
 
         //public int getDirection(int numpov, bool eightdirection = false)
         //{
@@ -251,10 +251,7 @@ namespace FreePIE.Core.Plugins
 
 
         // ****************** button getDown ****************************************
-        public bool getDown(int button, bool value = true)
-        {
-            return value && device.IsDown(button);
-        }
+        public bool getDown(int button, bool value = true) => value && device.IsDown(button);
         public List<bool> getDown(IList<int> buttons, bool value = true)
         {
             List<bool> b = new List<bool>();
@@ -266,26 +263,25 @@ namespace FreePIE.Core.Plugins
  
         // ****************** button getPressed *************************************
         public bool getPressed(int button, bool value = true) => value && device.IsPressed(button);
-
         public bool getPressedBip(int button, int frequency, int duration = 300) => getPressed(button).PlaySound(frequency, duration);
 
         // ****************** button getReleased ************************************
         public bool getReleased(int button) => device.IsReleased(button);
-
         public bool getReleasedBip(int button, int frequency, int duration = 300) => getReleased(button).PlaySound(frequency, duration);
 
         // ****************** button single or double clicked ************************************
-        public bool getClicked(int button, bool dblclick = false)
-        {
-            return dblclick ? device.IsDoubleClicked(button) : device.IsSingleClicked(button);
-        }
-        public bool getClickedBip(int button, bool dblclick = false, int frequency = 300, int duration = 300)
-        {
-            return getClicked(button, dblclick).PlaySound(frequency, duration);
-        }
+        public bool getClicked(int button, bool dblclick = false) => dblclick ? device.IsDoubleClicked(button) : device.IsSingleClicked(button);
+        public bool getClickedBip(int button, bool dblclick = false, int frequency = 300, int duration = 300) => getClicked(button, dblclick).PlaySound(frequency, duration);
 
         // ****************** button Helddown ************************************
         public bool getHeldDown(int button, int duration) => device.IsHeldDown(button, duration);
+        public int getHeldDown(int button, IList<int> duration)
+        {
+            long[] durations = new long[duration.Count];
+            for (int i = 0; i < duration.Count; i++)
+                durations[i] = duration[i];
+            return device.IsHeldDown(button, durations);
+        }
 
         // ****************** button getXstates in list, down, pressed and released **
         public List<bool> getStates(int button, int state = 3 /* 1 down 2 Pressed, 4 Released */)
@@ -302,33 +298,6 @@ namespace FreePIE.Core.Plugins
         // joypov is down to this direction?
         // direction = -1 (neutral), 0 (up), 1 (right), 2 (down) or 3 (right)
         public bool getPovDown(int numpov, int direction) => device.IsDown(IdentPov(numpov, direction));
-        //public int getPovDown(int numpov)
-        //{
-        //    if (pov[0] < 0) return -1;
-        //    int direction = pov[0] / 9000;
-        //    if (device.IsDown(IdentPov(numpov, direction))) return direction;
-        //    return -1;
-        //}
-        //public int getPovDir(int numpov, bool eightdirection = false)
-        //{
-        //    return device.getDirection(numpov, eightdirection);
-        //}
-        // joypov to 1 or 2 buttons (if direction > 3)
-        // bool [b1,b2,b3,b4] = [U,R,D,L] either [0,1,2,3] and [UR, RD, DL, LU] [4,5,6,7];
-        //public List<bool> getPovToBut(int numpov, bool twobuttons = false)
-        //{
-        //    int direction = device.getDirection(numpov, twobuttons);
-        //    List<bool> b = new List<bool>() { false, false, false, false };
-        //    if (direction < 0) return b;
-        //    if (direction < 4)
-        //        b[direction] = true;
-        //    else
-        //    {
-        //        b[direction - 4] = true;
-        //        b[(direction + 1) % 4] = true;
-        //    }
-        //    return b;
-        //}
 
         // joypov is pressed/released to/from this direction?
         public bool getPovPressed(int numpov, int direction) => device.IsPressed(IdentPov(numpov, direction));

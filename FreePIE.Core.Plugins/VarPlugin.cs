@@ -146,71 +146,7 @@ namespace FreePIE.Core.Plugins
             if ((state & 0x04) != 0) b.Add(plugin.IsReleased(value, indexer));
             return b;
         }
-        // *************** 3 states, down, pressed and released *********************************
-        //[NeedIndexer]
-        //public List<bool> get3States(bool var, string indexer)
-        //{
-        //    return new List<bool>() { 
-        //        var, 
-        //        plugin.IsPressed(var, indexer), 
-        //        plugin.IsReleased(var, indexer)
-        //    };
-        //}
-        // *************** 2 states, down and pressed  *********************************
-        //[NeedIndexer]
-        //public List<bool> get2States(bool var, string indexer)
-        //{
-        //    return new List<bool>() {
-        //        var,
-        //        plugin.IsPressed(var, indexer),
-        //    };
-        //}
-        // *************** get 4 or 8 directions from differents inputs (pov, buttons, axis.. ****************************
 
-        // pov value to 8 directions
-        // result is int = -1 (neutral), 0 (up), 4 (up/right), 1 (right), 5 (right/down), 
-        //                               2 (down), 6 (down/left), 3 (left), 7 (left/up)
-        //public int get8Ways(int pov)
-        //{
-        //    if (pov < 0) return -1;
-        //    pov = pov / 4500;
-        //    return pov % 2 == 0 ? pov / 2 : (pov / 2) + 4;
-        //}
-
-        // x, y to 8 directions
-        // result is int = -1 (neutral), 0 (up), 4 (up/right), 1 (right), 5 (right/down), 
-        //                               2 (down), 6 (down/left), 3 (left), 7 (left/up) 
-        //public int get8Ways(float value, int X, int Y)
-        //{
-        //    return plugin.Get8Direction(value, X, Y);
-        //}
-        // x, y to 4 directions
-        // return x or y, if x and y are != -1 then result = -1
-        //public int get4Ways(float value, Axis a, int XorY, int Y = 0)
-        //{
-        //    return plugin.Get4Direction(value, a, XorY, Y);
-        //}
-        // pov value to 4 directions
-        // result is int = -1 (neutral), 0 (up), 1 (right), 2 (down) or 3 (right)
-        //public int get4Ways(int pov)
-        //{
-        //    return pov > 0 ? pov / 9000 : pov;
-        //}
-        // button state to 4 directions only one button have to be true
-        // result is int = -1 (neutral), 0 (up), 1 (right), 2 (down) , 3 (right)
-        //public int get4Ways(IList<bool> state)
-        //{
-        //    for (int i = 0; i < 4; i++)
-        //    {
-        //        if (state[i])
-        //        {
-        //            for (int j = i + 1; j < 4; j++)
-        //                if (state[j]) return -1;
-        //            return i;
-        //        }
-        //    }
-        //    return -1;
-        //}
 
         // *************** single ou double Clicked **************************************************************
         [NeedIndexer]
