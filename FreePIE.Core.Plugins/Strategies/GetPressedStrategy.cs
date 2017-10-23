@@ -44,7 +44,7 @@ namespace FreePIE.Core.Plugins.Strategies
             else
                 val.b[0] = isDown(code, value);
 
-            return previouslyPressed ? false : val.b[0];
+            return !previouslyPressed && val.b[0];
         }
         public bool IsReleased(T code, bool value = false)
         {
@@ -55,7 +55,7 @@ namespace FreePIE.Core.Plugins.Strategies
             else
                 val.b[1] = isDown(code, value);
 
-            return !previouslyPressed ? false : !val.b[1];
+            return previouslyPressed && !val.b[1];
         }
         public bool IsSingleClicked(T code, bool value = false)
         {
