@@ -158,7 +158,7 @@ namespace FreePIE.Core.Plugins
         public int getHeldDown(bool value, int nbvalue, int duration, string indexer) => plugin.HeldDown(value, nbvalue, duration, indexer);
 
         [NeedIndexer]
-        public bool repeat(bool value, int lapse, string indexer) => plugin.Repeat(value, lapse, indexer);
+        public bool getRepeat(bool value, int lapse, string indexer) => plugin.Repeat(value, lapse, indexer);
 
         // *************** change value duration sglClick ****************************************
         public void wait(int time)
