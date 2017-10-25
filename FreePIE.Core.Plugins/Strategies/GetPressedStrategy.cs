@@ -102,51 +102,7 @@ namespace FreePIE.Core.Plugins.Strategies
             return false;
         }
 
-        //public bool IsHelDowned1(T code, bool value, long duration)
-        //{
-        //    if (IsPressed(code, value))    // || (isDown(code, value) && dico[code].timer[2] < 0))
-        //    {
-        //        dico[code].timer[2] = Gx.StartCount();
-        //        return false;
-        //    }
-        //    if (IsReleased(code, value))   // || (!isDown(code, value) && dico[code].timer[2] > 0))
-        //    {
-        //        dico[code].timer[2] = Gx.StopCount();
-        //        return false;
-        //    }
-        //    if (value && dico[code].timer[2] >= 0)
-        //        return dico[code].timer[2].GetLapse() >= duration;
-
-        //    return false;
-        //}
-        public bool IsHelDowned(T code, bool value, long duration)
-        {
-            State val;
-            if (!dico.TryGetValue(code, out val))
-            {
-                dico[code] = (val = new State());
-                return false;
-            }
-
-            if (value) // (isDown(code, value))
-            {
-                if (val.timer[2] < 0)
-                    val.timer[2] = Gx.StartCount();
-                else
-                {
-                    if (val.timer[2] >= 0)
-                        return val.timer[2].GetLapse() >= duration;
-                }
-            }
-            else
-            {
-                if (val.timer[2] >= 0)
-                    val.timer[2] = Gx.StopCount();
-            }
-            return false;
-        }
-
-        public int IsHelDowned(T code, bool value, long[] durations)
+        public int HelDowned(T code, bool value, int nbvalue, int duration)
         {
             State val;
             if (!dico.TryGetValue(code, out val))
@@ -161,10 +117,10 @@ namespace FreePIE.Core.Plugins.Strategies
                     val.timer[2] = Gx.StartCount();
                 else
                 {
-                    v = durations.Length;
+                    v = nbvalue;
                     var dur = val.timer[2].GetLapse();
                     for (var i = 0; i < v; i++)
-                        if (dur <= durations[i])
+                        if (dur <= duration * (i + 1))
                         {
                             v = i;
                             break;
@@ -187,10 +143,10 @@ namespace FreePIE.Core.Plugins.Strategies
             }
             return -1;
         }
- 
-        public bool Repeated(T code, bool value, long duration)
+
+        public bool Repeated(T code, bool value, int duration)
         {
-            if (IsHelDowned(code, value, duration))
+            if (HelDowned(code, value, 1, duration) == 11)
             {
                 dico[code].timer[2] = Gx.ReStartCount();
                 return true;
