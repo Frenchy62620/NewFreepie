@@ -217,8 +217,7 @@ namespace FreePIE.Core.Plugins
 
         public bool IsSingleClicked(int button) => getPressedStrategy.IsSingleClicked(button);
         public bool IsDoubleClicked(int button) => getPressedStrategy.IsDoubleClicked(button);
-        public bool IsHeldDown(int button, int lapse) => getPressedStrategy.IsHelDowned(button, IsDown(button), lapse);
-        public int IsHeldDown(int button, long[] lapse) => getPressedStrategy.IsHelDowned(button, IsDown(button), lapse);
+        public int HeldDown(int button, int nbvalue, int lapse) => getPressedStrategy.HelDowned(button, IsDown(button), nbvalue, lapse);
 
         //public int getDirection(int numpov, bool eightdirection = false)
         //{
@@ -274,14 +273,8 @@ namespace FreePIE.Core.Plugins
         public bool getClickedBip(int button, bool dblclick = false, int frequency = 300, int duration = 300) => getClicked(button, dblclick).PlaySound(frequency, duration);
 
         // ****************** button Helddown ************************************
-        public bool getHeldDown(int button, int duration) => device.IsHeldDown(button, duration);
-        public int getHeldDown(int button, IList<int> duration)
-        {
-            long[] durations = new long[duration.Count];
-            for (int i = 0; i < duration.Count; i++)
-                durations[i] = duration[i];
-            return device.IsHeldDown(button, durations);
-        }
+
+        public int getHeldDown(int button, int nbvalue, int duration) => device.HeldDown(button, nbvalue, duration);
 
         // ****************** button getXstates in list, down, pressed and released **
         public List<bool> getStates(int button, int state = 3 /* 1 down 2 Pressed, 4 Released */)

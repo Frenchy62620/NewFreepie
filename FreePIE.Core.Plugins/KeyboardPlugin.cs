@@ -378,8 +378,8 @@ namespace FreePIE.Core.Plugins
         }
         public bool IsSingleClicked(int keycode) => getKeyPressedStrategy.IsSingleClicked(keycode);
         public bool IsDoubleClicked(int keycode) => getKeyPressedStrategy.IsDoubleClicked(keycode);
-        public bool IsHeldDown(int keycode, int lapse) => getKeyPressedStrategy.IsHelDowned(keycode, IsKeyDown(keycode), lapse);
-        public int IsHeldDown(int keycode, long [] lapse) => getKeyPressedStrategy.IsHelDowned(keycode, IsKeyDown(keycode), lapse);
+
+        public int HeldDown(int keycode, int nbvalue, int lapse) => getKeyPressedStrategy.HelDowned(keycode, IsKeyDown(keycode), nbvalue, lapse);
         public bool IsKeyDown(int keycode, bool value = false)
         {
             // Returns true if the key is currently being pressed
@@ -494,14 +494,8 @@ namespace FreePIE.Core.Plugins
         //    return dblclick ? plugin.IsDoubleClicked(Convert.ToInt32(key)) : plugin.IsSingleClicked(Convert.ToInt32(key));
         //}
         // ****************** button Helddown ************************************
-        public bool getHeldDown<T>(T key, int duration) => plugin.IsHeldDown(Convert.ToInt32(key), duration);
-        public int getHeldDown<T>(T key, IList<int> duration)
-        {
-            long[] durations = new long[duration.Count];
-            for (int i = 0; i < duration.Count; i++)
-                durations[i] = duration[i];
-            return plugin.IsHeldDown(Convert.ToInt32(key), durations);
-        }
+        public int getHeldDown<T>(T key,  int nbvalue, int duration) => plugin.HeldDown(Convert.ToInt32(key), nbvalue, duration);
+
         public string getNamekey(int i)
         {
             return Enum.GetName(typeof(Key), i);

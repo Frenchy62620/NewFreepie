@@ -41,17 +41,11 @@ namespace FreePIE.Core.Plugins
         public bool IsSingleClicked(bool value, string indexer) => getVarPressedStrategy.IsSingleClicked(indexer, value);
         public bool IsDoubleClicked(bool value, string indexer) => getVarPressedStrategy.IsDoubleClicked(indexer, value);
 
-        //end single and double click
-        public bool IsHeldDown(bool value, int milliseconds, string indexer) => getVarPressedStrategy.IsHelDowned(indexer, value, milliseconds);
-        public int IsHeldDown(bool value, long[] lapse, string indexer) => getVarPressedStrategy.IsHelDowned(indexer, value, lapse);
+        public int HeldDown(bool value, int nbvalue, int lapse, string indexer) => getVarPressedStrategy.HelDowned(indexer, value, nbvalue, lapse);
+        public bool Repeat(bool value, int lapse, string indexer) => getVarPressedStrategy.Repeated(indexer, value, lapse);
 
-        public bool Repeat(bool value, int milliseconds, string indexer)
-        {
-            /*
-                return true every lapse of milliseconds
-            */
-            return getVarPressedStrategy.Repeated(indexer, value, milliseconds);
-        }
+        //   // return getVarPressedStrategy.Repeated(indexer, value, milliseconds);
+        //}
         //public int Get4Direction(float value, Axis a, int XorY, int Y = 0)
         //{
         //    switch (a)
@@ -161,24 +155,10 @@ namespace FreePIE.Core.Plugins
         }
         // *************** heldDown **************************************************************
         [NeedIndexer]
-       public bool getHeldDown(bool value, int lapse, string indexer)
-       {
-           return plugin.IsHeldDown(value, lapse, indexer);
-       }
-        [NeedIndexer]
-        public int getHeldDown(bool value, IList<int> duration, string indexer)
-        {
-            long[] durations = new long[duration.Count];
-            for (int i = 0; i < duration.Count; i++)
-                durations[i] = duration[i];
-            return plugin.IsHeldDown(value, durations, indexer);
-        }
+        public int getHeldDown(bool value, int nbvalue, int duration, string indexer) => plugin.HeldDown(value, nbvalue, duration, indexer);
 
         [NeedIndexer]
-        public bool repeat(bool value, int lapse, string indexer)
-       {
-           return plugin.Repeat(value, lapse, indexer);
-       }
+        public bool repeat(bool value, int lapse, string indexer) => plugin.Repeat(value, lapse, indexer);
 
         // *************** change value duration sglClick ****************************************
         public void wait(int time)
