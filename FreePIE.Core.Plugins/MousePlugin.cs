@@ -212,6 +212,7 @@ namespace FreePIE.Core.Plugins
         public bool IsSingleClicked(int button) => getButtonPressedStrategy.IsSingleClicked(button);
         public bool IsDoubleClicked(int button) => getButtonPressedStrategy.IsDoubleClicked(button);
         public int HeldDown(int button, int nbvalue, int duration) => getButtonPressedStrategy.HelDowned(button, IsDown(button), nbvalue, duration);
+        public void HeldDownStop(int button) => getButtonPressedStrategy.HelDownStop(button);
         public bool SetEnhancePointerPrecision(int state = -1)
         {
             int[] mouseParams = new int[3];
@@ -295,7 +296,7 @@ namespace FreePIE.Core.Plugins
         public bool getClicked(int button, bool dblclick = false) => dblclick ? plugin.IsDoubleClicked(button) : plugin.IsSingleClicked(button);
         public void setPressed(int button) => plugin.PressAndRelease(button);
         public int getHeldDown(int button, int nbvalue, int duration) => plugin.HeldDown(button, nbvalue, duration);
-        
+        public void getHeldDownStop(int button) => plugin.HeldDownStop(button);
         public bool setPointerPrecision(int state = -1 /* 0 = disable, 1 = enable, -1 toogle */)
         {
             return plugin.SetEnhancePointerPrecision(state);

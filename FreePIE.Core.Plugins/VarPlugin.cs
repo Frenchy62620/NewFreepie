@@ -42,6 +42,7 @@ namespace FreePIE.Core.Plugins
         public bool IsDoubleClicked(bool value, string indexer) => getVarPressedStrategy.IsDoubleClicked(indexer, value);
 
         public int HeldDown(bool value, int nbvalue, int lapse, string indexer) => getVarPressedStrategy.HelDowned(indexer, value, nbvalue, lapse);
+        public void HeldDownStop(string indexer) => getVarPressedStrategy.HelDownStop(indexer);
         public bool Repeat(bool value, int lapse, string indexer) => getVarPressedStrategy.Repeated(indexer, value, lapse);
 
         //   // return getVarPressedStrategy.Repeated(indexer, value, milliseconds);
@@ -156,6 +157,8 @@ namespace FreePIE.Core.Plugins
         // *************** heldDown **************************************************************
         [NeedIndexer]
         public int getHeldDown(bool value, int nbvalue, int duration, string indexer) => plugin.HeldDown(value, nbvalue, duration, indexer);
+        [NeedIndexer]
+        public void getHeldDownStop(bool value, int nbvalue, int duration, string indexer) => plugin.HeldDownStop(indexer);
 
         [NeedIndexer]
         public bool getRepeat(bool value, int lapse, string indexer) => plugin.Repeat(value, lapse, indexer);

@@ -785,12 +785,16 @@ namespace FreePIE.Core.Plugins
             return Gx.keystyped;
         }
 
-        public Tuple<int, int, int> test(Tuple<int,int,int>tu)
+        private List<string> test1(List<int> l)
         {
-            var a = tu.Item1 * 10;
-            var b = tu.Item2 * 10;
-            var c = tu.Item3 * 10;
-            return new Tuple<int, int, int>(a, b, c);
+            List<string> t = new List<string>();
+            foreach (var z in l)
+                t.Add(z.ToString());
+            return t;
+        }
+        public List<string> test(List<int> tu)
+        {
+            return test1(tu);
         }
     }
 }
