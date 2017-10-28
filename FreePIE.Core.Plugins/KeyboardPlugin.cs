@@ -18,15 +18,48 @@ using SharpDX.DirectInput;
 namespace FreePIE.Core.Plugins
 {
     using Gx = GlobalExtensionMethods;
+
     // SlimDX key-codes
     [GlobalEnum]
     public enum Key
     {
         None = -1,
-        D0 = 0, D1 = 1, D2 = 2, D3 = 3, D4 = 4, D5 = 5, D6 = 6, D7 = 7, D8 = 8, D9 = 9,
-        A = 10, B = 11, C = 12, D = 13, E = 14, F = 15, G = 16, H = 17, I = 18, J = 19,
-        K = 20, L = 21, M = 22, N = 23, O = 24, P = 25, Q = 26, R = 27, S = 28, T = 29,
-        U = 30, V = 31, W = 32, X = 33, Y = 34, Z = 35,
+        D0 = 0,
+        D1 = 1,
+        D2 = 2,
+        D3 = 3,
+        D4 = 4,
+        D5 = 5,
+        D6 = 6,
+        D7 = 7,
+        D8 = 8,
+        D9 = 9,
+        A = 10,
+        B = 11,
+        C = 12,
+        D = 13,
+        E = 14,
+        F = 15,
+        G = 16,
+        H = 17,
+        I = 18,
+        J = 19,
+        K = 20,
+        L = 21,
+        M = 22,
+        N = 23,
+        O = 24,
+        P = 25,
+        Q = 26,
+        R = 27,
+        S = 28,
+        T = 29,
+        U = 30,
+        V = 31,
+        W = 32,
+        X = 33,
+        Y = 34,
+        Z = 35,
         AbntC1 = 36,
         AbntC2 = 37,
         Apostrophe = 38,
@@ -45,8 +78,21 @@ namespace FreePIE.Core.Plugins
         End = 51,
         Equals = 52,
         Escape = 53,
-        F1 = 54, F2 = 55, F3 = 56, F4 = 57, F5 = 58, F6 = 59, F7 = 60, F8 = 61, F9 = 62,
-        F10 = 63, F11 = 64, F12 = 65, F13 = 66, F14 = 67, F15 = 68,
+        F1 = 54,
+        F2 = 55,
+        F3 = 56,
+        F4 = 57,
+        F5 = 58,
+        F6 = 59,
+        F7 = 60,
+        F8 = 61,
+        F9 = 62,
+        F10 = 63,
+        F11 = 64,
+        F12 = 65,
+        F13 = 66,
+        F14 = 67,
+        F15 = 68,
         Console = 69,
         Grave = Console,
         Home = 70,
@@ -54,11 +100,16 @@ namespace FreePIE.Core.Plugins
         Kana = 72,
         Kanji = 73,
         LeftBracket = 74,
-        LeftControl = 75, LeftCtrl = LeftControl, LCtrl = LeftControl,
+        LeftControl = 75,
+        LeftCtrl = LeftControl,
+        LCtrl = LeftControl,
         LeftArrow = 76,
-        LeftAlt = 77, LAlt = LeftAlt,
-        LeftShift = 78, LSht = LeftShift,
-        LeftWindowsKey = 79, LWKey = LeftWindowsKey,
+        LeftAlt = 77,
+        LAlt = LeftAlt,
+        LeftShift = 78,
+        LSht = LeftShift,
+        LeftWindowsKey = 79,
+        LWKey = LeftWindowsKey,
         Mail = 80,
         MediaSelect = 81,
         MediaStop = 82,
@@ -68,10 +119,24 @@ namespace FreePIE.Core.Plugins
         NextTrack = 86,
         NoConvert = 87,
         NumberLock = 88,
-        NumberPad0 = 89, NumberPad1 = 90, NumberPad2 = 91, NumberPad3 = 92, NumberPad4 = 93, NumberPad5 = 94,
-        NumberPad6 = 95, NumberPad7 = 96, NumberPad8 = 97, NumberPad9 = 98,
-        NumberPadComma = 99, NumberPadEnter = 100, NumberPadEquals = 101, NumberPadMinus = 102,
-        NumberPadPeriod = 103, NumberPadPlus = 104, NumberPadSlash = 105, NumberPadStar = 106,
+        NumberPad0 = 89,
+        NumberPad1 = 90,
+        NumberPad2 = 91,
+        NumberPad3 = 92,
+        NumberPad4 = 93,
+        NumberPad5 = 94,
+        NumberPad6 = 95,
+        NumberPad7 = 96,
+        NumberPad8 = 97,
+        NumberPad9 = 98,
+        NumberPadComma = 99,
+        NumberPadEnter = 100,
+        NumberPadEquals = 101,
+        NumberPadMinus = 102,
+        NumberPadPeriod = 103,
+        NumberPadPlus = 104,
+        NumberPadSlash = 105,
+        NumberPadStar = 106,
         Oem102 = 107,
         PageDown = 108,
         PageUp = 109,
@@ -81,12 +146,17 @@ namespace FreePIE.Core.Plugins
         Power = 113,
         PreviousTrack = 114,
         RightBracket = 115,
-        RightControl = 116, RightCtrl = RightControl, RCtrl = RightControl,
+        RightControl = 116,
+        RightCtrl = RightControl,
+        RCtrl = RightControl,
         Return = 117,
         RightArrow = 118,
-        RightAlt = 119, RAlt = RightAlt,
-        RightShift = 120, RSht = RightShift,
-        RightWindowsKey = 121, RWKey = RightWindowsKey,
+        RightAlt = 119,
+        RAlt = RightAlt,
+        RightShift = 120,
+        RSht = RightShift,
+        RightWindowsKey = 121,
+        RWKey = RightWindowsKey,
         ScrollLock = 122,
         Semicolon = 123,
         Slash = 124,
@@ -101,8 +171,13 @@ namespace FreePIE.Core.Plugins
         VolumeDown = 133,
         VolumeUp = 134,
         Wake = 135,
-        WebBack = 136, WebFavorites = 137, WebForward = 138, WebHome = 139, WebRefresh = 140,
-        WebSearch = 141, WebStop = 142,
+        WebBack = 136,
+        WebFavorites = 137,
+        WebForward = 138,
+        WebHome = 139,
+        WebRefresh = 140,
+        WebSearch = 141,
+        WebStop = 142,
         Yen = 143,
         Unknown = 144,
         // AZERTY
@@ -113,15 +188,22 @@ namespace FreePIE.Core.Plugins
         //    { (int)Key.Semicolon, (int)Key.M},
         //    { (int)Key.Comma, (int)Key.Semicolon},
         //    { (int)Key.M, (int)Key.Comma}
-        aA = Q, aQ = A, aZ = W, aW = Z, aSemicolon = M, aComma = Semicolon, aM = Comma
+        aA = Q,
+        aQ = A,
+        aZ = W,
+        aW = Z,
+        aSemicolon = M,
+        aComma = Semicolon,
+        aM = Comma
     }
 
 
-    [GlobalType(Type = typeof (KeyboardGlobal))]
+    [GlobalType(Type = typeof(KeyboardGlobal))]
     public class KeyboardPlugin : Plugin
     {
         // Maps SlimDX key codes to scan codes
-        private int[] ScanCodeMap = {
+        private int[] ScanCodeMap =
+        {
             0x0B, //D0 = 0,
             0x02, //D1 = 1,
             0x03, //D2 = 2,
@@ -269,7 +351,53 @@ namespace FreePIE.Core.Plugins
             0, //Unknown = 144,
         };
 
-        private HashSet<int> extendedKeyMap = new HashSet<int>() { 39, 44, 46, 48, 49, 50, 51, 70, 71, 76, 79, 80, 81, 82, 84, 85, 86, 100, 105, 108, 109, 110, 112, 113, 114, 116, 118, 119, 121, 125, 127, 128, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143 };
+        private HashSet<int> extendedKeyMap = new HashSet<int>()
+        {
+            39,
+            44,
+            46,
+            48,
+            49,
+            50,
+            51,
+            70,
+            71,
+            76,
+            79,
+            80,
+            81,
+            82,
+            84,
+            85,
+            86,
+            100,
+            105,
+            108,
+            109,
+            110,
+            112,
+            113,
+            114,
+            116,
+            118,
+            119,
+            121,
+            125,
+            127,
+            128,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143
+        };
 
         private ScriptKeyboard SF;
 
@@ -283,7 +411,7 @@ namespace FreePIE.Core.Plugins
         //    { (int)Key.Comma, (int)Key.Semicolon},
         //    { (int)Key.M, (int)Key.Comma}
         //};
-        
+
         private DirectInput DirectInputInstance = new DirectInput();
         private Keyboard KeyboardDevice;
         private KeyboardState KeyState = new KeyboardState();
@@ -372,14 +500,17 @@ namespace FreePIE.Core.Plugins
                 Gx.InvokeMethodinfo(ref SF);
             }
         }
+
         public bool isLedScrollLockOn()
         {
             return System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.Scroll);
         }
+
         public bool IsSingleClicked(int keycode) => getKeyPressedStrategy.IsSingleClicked(keycode);
         public bool IsDoubleClicked(int keycode) => getKeyPressedStrategy.IsDoubleClicked(keycode);
 
         public int HeldDown(int keycode, int nbvalue, int lapse) => getKeyPressedStrategy.HelDowned(keycode, IsKeyDown(keycode), nbvalue, lapse);
+        public void HeldDownStop(int keycode) => getKeyPressedStrategy.HelDownStop(keycode);
         public bool IsKeyDown(int keycode, bool value = false)
         {
             // Returns true if the key is currently being pressed
@@ -387,6 +518,7 @@ namespace FreePIE.Core.Plugins
             bool down = KeyState.IsPressed(key) || MyKeyDown[keycode];
             return down;
         }
+
         public bool IsKeyUp(int keycode)
         {
             // Returns true if the key is currently being released
@@ -397,6 +529,7 @@ namespace FreePIE.Core.Plugins
 
         public bool IsPressed(int key) => getKeyPressedStrategy.IsPressed(key);
         public bool IsReleased(int key) => getKeyPressedStrategy.IsReleased(key);
+
         private MouseKeyIO.KEYBDINPUT KeyInput(ushort code, uint flag)
         {
             var i = new MouseKeyIO.KEYBDINPUT();
@@ -423,7 +556,8 @@ namespace FreePIE.Core.Plugins
                 //    input[0].ki = KeyInput((ushort)scancode, MouseKeyIO.KEYEVENTF_EXTENDEDKEY);
                 //else
                 //    input[0].ki = KeyInput((ushort)scancode, 0);
-                input[0].ki = KeyInput((ushort)scancode, extendedKeyMap.Contains(code) ? MouseKeyIO.KEYEVENTF_EXTENDEDKEY : 0);
+                input[0].ki = KeyInput((ushort) scancode,
+                    extendedKeyMap.Contains(code) ? MouseKeyIO.KEYEVENTF_EXTENDEDKEY : 0);
                 MouseKeyIO.NativeMethods.SendInput(1, input, Marshal.SizeOf(input[0].GetType()));
             }
         }
@@ -442,23 +576,25 @@ namespace FreePIE.Core.Plugins
                 input[0].type = MouseKeyIO.INPUT_KEYBOARD;
 //                if (ExtendedKeyMap[code])
                 if (extendedKeyMap.Contains(code))
-                    input[0].ki = KeyInput((ushort)scancode, MouseKeyIO.KEYEVENTF_EXTENDEDKEY | MouseKeyIO.KEYEVENTF_KEYUP);
+                    input[0].ki = KeyInput((ushort) scancode,
+                        MouseKeyIO.KEYEVENTF_EXTENDEDKEY | MouseKeyIO.KEYEVENTF_KEYUP);
                 else
-                    input[0].ki = KeyInput((ushort)scancode, MouseKeyIO.KEYEVENTF_KEYUP);
+                    input[0].ki = KeyInput((ushort) scancode, MouseKeyIO.KEYEVENTF_KEYUP);
 
                 MouseKeyIO.NativeMethods.SendInput(1, input, Marshal.SizeOf(input[0].GetType()));
             }
         }
- 
+
         public void PressAndRelease(int keycode) => setKeyPressedStrategy.Add(keycode);
         public void PressAndRelease(int keycode, bool state) => setKeyPressedStrategy.Add(keycode, state);
     }
 
     [Global(Name = "keyboard")]
-    public class KeyboardGlobal 
+    public class KeyboardGlobal
     {
         //private bool azerty_t, azerty_s;
         private readonly KeyboardPlugin plugin;
+
         public KeyboardGlobal(KeyboardPlugin plugin)
         {
             this.plugin = plugin;
@@ -476,16 +612,16 @@ namespace FreePIE.Core.Plugins
         //}
 
         //----------------------- special key -----------------------------------------------------------
-        public bool xShift => plugin.IsKeyDown((int)Key.LeftShift) || plugin.IsKeyDown((int)Key.RightShift);
-        public bool xControl => plugin.IsKeyDown((int)Key.LeftControl) || plugin.IsKeyDown((int)Key.RightControl);
-        public bool xAlt => plugin.IsKeyDown((int)Key.LeftAlt) || plugin.IsKeyDown((int)Key.RightAlt);
-        public bool xWin => plugin.IsKeyDown((int)Key.LeftWindowsKey) || plugin.IsKeyDown((int)Key.RightWindowsKey);
+        public bool xShift => plugin.IsKeyDown((int) Key.LeftShift) || plugin.IsKeyDown((int) Key.RightShift);
+        public bool xControl => plugin.IsKeyDown((int) Key.LeftControl) || plugin.IsKeyDown((int) Key.RightControl);
+        public bool xAlt => plugin.IsKeyDown((int) Key.LeftAlt) || plugin.IsKeyDown((int) Key.RightAlt);
+        public bool xWin => plugin.IsKeyDown((int) Key.LeftWindowsKey) || plugin.IsKeyDown((int) Key.RightWindowsKey);
         //------------------------------------------------------------------------------------------------
         public Key intTOkey(int key)
         {
             //string e = ((Key)key).ToString();
             //string t = Enum.GetName(typeof(Key), key);
-            return (Key)key;
+            return (Key) key;
         }
 
         //// ****************** key single or double clicked ************************************
@@ -494,12 +630,13 @@ namespace FreePIE.Core.Plugins
         //    return dblclick ? plugin.IsDoubleClicked(Convert.ToInt32(key)) : plugin.IsSingleClicked(Convert.ToInt32(key));
         //}
         // ****************** button Helddown ************************************
-        public int getHeldDown<T>(T key,  int nbvalue, int duration) => plugin.HeldDown(Convert.ToInt32(key), nbvalue, duration);
-
+        public int getHeldDown<T>(T key, int nbvalue, int duration) => plugin.HeldDown(Convert.ToInt32(key), nbvalue, duration);
+        public void getHeldDownStop<T>(T key) => plugin.HeldDownStop(Convert.ToInt32(key));
         public string getNamekey(int i)
         {
             return Enum.GetName(typeof(Key), i);
         }
+
         //public bool getKeyDown(Key key)
         //{
         //    return plugin.IsKeyDown((int) key);
@@ -515,10 +652,12 @@ namespace FreePIE.Core.Plugins
                 if (!plugin.IsKeyDown(Convert.ToInt32(key))) return false;
             return true;
         }
+
         public bool getUp<T>(T key)
         {
             return plugin.IsKeyUp(Convert.ToInt32(key));
         }
+
         public bool getPressed<T>(T key)
         {
             return plugin.IsPressed(Convert.ToInt32(key));
@@ -531,8 +670,9 @@ namespace FreePIE.Core.Plugins
 
         public void setKeyDown(Key key)
         {
-            plugin.KeyDown((int)key);
+            plugin.KeyDown((int) key);
         }
+
         //Multi keys to Keydown, return is list reversed
         public List<Key> setKeyDown(IList<Key> keys)
         {
@@ -543,6 +683,7 @@ namespace FreePIE.Core.Plugins
             setKey(keys, true);
             return k;
         }
+
         // direction Pov to list of key(s)
         public List<Key> getKeyFromPov(int direction, params IList<Key>[] keys)
         {
@@ -564,14 +705,17 @@ namespace FreePIE.Core.Plugins
             }
             return keycursor;
         }
+
         public void setKeyUp(Key key)
         {
-            plugin.KeyUp((int)key);
+            plugin.KeyUp((int) key);
         }
+
         public void setKeyUp(IList<Key> keys, bool reverse = false)
         {
             setKey(keys, false, reverse);
         }
+
         public void setKey(Key key, bool down)
         {
             if (down)
@@ -579,6 +723,7 @@ namespace FreePIE.Core.Plugins
             else
                 plugin.KeyUp((int) key);
         }
+
         public void setKey(IList<Key> keys, bool down, bool reverse = false)
         {
             if (reverse)
@@ -588,6 +733,7 @@ namespace FreePIE.Core.Plugins
                 foreach (var k in keys)
                     setKey(k, down);
         }
+
         // One Key to press
         public void setPressed<T>(T key) where T : struct
         {
@@ -600,6 +746,7 @@ namespace FreePIE.Core.Plugins
             foreach (var k in keys)
                 plugin.PressAndRelease(Convert.ToInt32(k), state);
         }
+
         public void setPressed<T>(T key, bool state) where T : struct
         {
             plugin.PressAndRelease((Convert.ToInt32(key)), state);
@@ -613,6 +760,7 @@ namespace FreePIE.Core.Plugins
             for (int i = 0; i < 4; i++)
                 if (i == directionXY[0] || i == directionXY[1]) setPressed(keys[i], true);
         }
+
         //public void setPressedNow(IList<Key> keys, int time = 20, bool sw = true)
         //{
         //    if (keys == null || !sw) return;
@@ -623,7 +771,7 @@ namespace FreePIE.Core.Plugins
         public void setPressedBip(IList<Key> keys, int frequency, int duration = 300)
         {
             foreach (var k in keys)
-                plugin.PressAndRelease((int)k);
+                plugin.PressAndRelease((int) k);
             true.PlaySound(frequency, duration);
         }
 
@@ -635,6 +783,14 @@ namespace FreePIE.Core.Plugins
         public string getBuffer()
         {
             return Gx.keystyped;
+        }
+
+        public Tuple<int, int, int> test(Tuple<int,int,int>tu)
+        {
+            var a = tu.Item1 * 10;
+            var b = tu.Item2 * 10;
+            var c = tu.Item3 * 10;
+            return new Tuple<int, int, int>(a, b, c);
         }
     }
 }

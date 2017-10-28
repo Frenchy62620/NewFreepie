@@ -46,29 +46,39 @@ namespace FreePIE.Core.Plugins
 
             XDocument xdoc;
             xdoc = new XDocument(new XElement("Devices"));
-            xdoc.Save(pathlog);
+            //xdoc.Save(pathlog);
 
             // fin tkz
             var diDevices = directInput.GetDevices(DeviceClass.GameControl, DeviceEnumerationFlags.AttachedOnly);
+            XElement el = xdoc.Element("Devices");
+            el.Add(
+            new XElement("Joysticks_Connected",
+                new XAttribute("NBR", diDevices == null ? 0: diDevices.Count()),
+            from j in diDevices
+            select new XElement("IDENT",
+            new XAttribute("id", diDevices.IndexOf(j)),
+            new XAttribute("Name", j.InstanceName.TrimEnd('\0'))))
+                );
+            xdoc.Save(pathlog);
             var creator = new Func<DeviceInstance, JoystickGlobal>(d =>
             {
                 var controller = new Joystick(directInput, d.InstanceGuid);
                 controller.SetCooperativeLevel(handle, CooperativeLevel.Exclusive | CooperativeLevel.Background);
                 controller.Acquire();
                 
-                var device = new Device(controller, pathlog);
+                var device = new Device(controller, pathlog, devices.Count());
                 devices.Add(device);
                 return new JoystickGlobal(device);
             });
 
             //return new GlobalIndexer<JoystickGlobal, int, string>(index => creator(diDevices[index]), index => creator(diDevices.Single(di => di.InstanceName.Contains(index))));
 
-            //example watch the pov's of dual thrustmaster T16000M joysticks
-            //diagnostics.watch(joystick["T.16000M", 0].pov[0])
-            //diagnostics.watch(joystick["T.16000M", 1].pov[0])
+                        //example watch the pov's of dual thrustmaster T16000M joysticks
+                        //diagnostics.watch(joystick["T.16000M", 0].pov[0])
+                        //diagnostics.watch(joystick["T.16000M", 1].pov[0])
 
-            //or specify the first device found same syntax as before (the index is optional and defaults to 0)
-            //diagnostics.watch(joystick["T.16000M"].pov[0])
+                        //or specify the first device found same syntax as before (the index is optional and defaults to 0)
+                        //diagnostics.watch(joystick["T.16000M"].pov[0])
             return new GlobalIndexer<JoystickGlobal, int, string>(intIndex => creator(diDevices[intIndex]), (strIndex, idx) =>
             {
                 var d = diDevices.Where(di => di.InstanceName.TrimEnd('\0') == strIndex).ToArray();
@@ -130,11 +140,11 @@ namespace FreePIE.Core.Plugins
             public int Id { get; set; }
         }
         //fin tkz
-        public Device(Joystick joystick, string pathlog)
+        public Device(Joystick joystick, string pathlog, int id)
         {
             getPressedStrategy = new GetPressedStrategy<int>(IsDown);
             this.joystick = joystick;
-            GetInfoStick(pathlog);//tkz joy
+            GetInfoStick(id, pathlog);//tkz joy
             SetRange(-16383, 16383);
         }
 
@@ -147,7 +157,7 @@ namespace FreePIE.Core.Plugins
 
         public void Reset(/*int id*/) => state = null;
 
-        public void GetInfoStick(string pathlog)  //tkz joy
+        public void GetInfoStick(int id, string pathlog)  //tkz joy
         {
             InfoJoystick info = new InfoJoystick(joystick);
 
@@ -156,7 +166,7 @@ namespace FreePIE.Core.Plugins
             
             el.Add(
                 new XElement("Joystick_Name",
-                    new XAttribute("ID", joystick.Properties.JoystickId), joystick.Information.InstanceName.TrimEnd('\0')),
+                    new XAttribute("ID_SCRIPT", id/*joystick.Properties.JoystickId*/), joystick.Information.InstanceName.TrimEnd('\0')),
                 new XElement("Joystick_Char",
                         new XAttribute("Buttons", joystick.Capabilities.ButtonCount),
                         new XAttribute("Axis", joystick.Capabilities.AxeCount),
@@ -201,6 +211,11 @@ namespace FreePIE.Core.Plugins
                 }
             }
             return new List<int>() { min, max };
+        }
+
+        public string getNameOfJoy()
+        {
+            return joystick.Information.InstanceName.TrimEnd('\0');
         }
         public bool IsPressed(int button) => getPressedStrategy.IsPressed(button);
         public bool IsReleased(int button) => getPressedStrategy.IsReleased(button);
@@ -306,6 +321,8 @@ namespace FreePIE.Core.Plugins
             foreach(var id in idAxis)
                 device.SetRange(minvalue, maxvalue, id);
         }
+
+        public string getName() => device.getNameOfJoy(); 
         public int x => State.X;
         public int y => State.Y;
         public int z => State.Z;
