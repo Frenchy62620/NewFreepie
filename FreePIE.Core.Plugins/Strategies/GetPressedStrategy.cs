@@ -143,7 +143,16 @@ namespace FreePIE.Core.Plugins.Strategies
             }
             return -1;
         }
-
+        public void HelDownStop(T code)
+        {
+            State val;
+            if (dico.TryGetValue(code, out val))
+            {
+                if (val.timer[2] < 0) return;
+                val.timer[2] = Gx.StopCount();
+                val.h = -1;
+            }
+        }
         public bool Repeated(T code, bool value, int duration)
         {
             if (HelDowned(code, value, 1, duration) == 11)
