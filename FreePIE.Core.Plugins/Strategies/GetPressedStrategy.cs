@@ -62,14 +62,14 @@ namespace FreePIE.Core.Plugins.Strategies
             if (IsPressed(code, value))
             {
                 var d = dico[code];
-                d.timer[0] = Gx.StartCount();
+                d.timer[0] = Gx.StartTimer();
                 return false;
             }
             else if (IsReleased(code, value))
             {
                 var d = dico[code];
                 var lapse = d.timer[0].GetLapse();
-                d.timer[0] = Gx.StopCount();
+                d.timer[0] = Gx.StopTimer();
                 return lapse <= Gx.lapse_singleclick;
             }
             else
@@ -82,12 +82,12 @@ namespace FreePIE.Core.Plugins.Strategies
                 var d = dico[code];
                 if (d.timer[1] < 0)
                 {
-                    d.timer[1] = Gx.StartCount();
+                    d.timer[1] = Gx.StartTimer();
                 }
                 else
                 {
                     var lapse = d.timer[1].GetLapse();
-                    d.timer[1] = Gx.StopCount();
+                    d.timer[1] = Gx.StopTimer();
                     return lapse <= Gx.lapse_singleclick;
                 }
             }
@@ -96,7 +96,7 @@ namespace FreePIE.Core.Plugins.Strategies
                 var d = dico[code];
                 if (d.timer[1] >= 0 && d.timer[1].GetLapse() > Gx.lapse_singleclick)
                 {
-                    d.timer[1] = Gx.StopCount();
+                    d.timer[1] = Gx.StopTimer();
                 }
             }
             return false;
@@ -114,7 +114,7 @@ namespace FreePIE.Core.Plugins.Strategies
             if (value) // key down(isDown(code, value))
             {
                 if (val.timer[2] < 0)
-                    val.timer[2] = Gx.StartCount();
+                    val.timer[2] = Gx.StartTimer();
                 else
                 {
                     v = nbvalue;
@@ -136,7 +136,7 @@ namespace FreePIE.Core.Plugins.Strategies
             {
                 if (val.timer[2] < 0) return -1;
 
-                val.timer[2] = Gx.StopCount();
+                val.timer[2] = Gx.StopTimer();
                 v = val.h;
                 val.h = -1;
                 return v;
@@ -149,7 +149,7 @@ namespace FreePIE.Core.Plugins.Strategies
             if (dico.TryGetValue(code, out val))
             {
                 if (val.timer[2] < 0) return;
-                val.timer[2] = Gx.StopCount();
+                val.timer[2] = Gx.StopTimer();
                 val.h = -1;
             }
         }
@@ -157,7 +157,7 @@ namespace FreePIE.Core.Plugins.Strategies
         {
             if (HelDowned(code, value, 1, duration) == 11)
             {
-                dico[code].timer[2] = Gx.ReStartCount();
+                dico[code].timer[2] = Gx.ReStartTimer();
                 return true;
             }
             return false;
