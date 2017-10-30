@@ -134,13 +134,13 @@ namespace FreePIE.Core.Plugins
 
                  bk.duration[led] = duration;
                  UpdateBufferLed(led, false);
-                 bk.timer[led] = Gx.StartCount();
+                 bk.timer[led] = Gx.StartTimer();
              }
          }
 
          public void StopLoop(int led)
          {
-             bk.timer[led] = Gx.StopCount();
+             bk.timer[led] = Gx.StopTimer();
              bk.stateleds[led + 12] = false; // blinking off
              UpdateBufferLed(led, bk.stateleds[led + 6]); // restore previous status of led
          }
@@ -180,7 +180,6 @@ namespace FreePIE.Core.Plugins
     public class WarthogGlobal 
     {
         private readonly WarthogPlugin plugin;
-
         public WarthogGlobal(WarthogPlugin plugin)
         {
             this.plugin = plugin;
