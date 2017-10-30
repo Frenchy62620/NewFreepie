@@ -17,7 +17,7 @@ namespace FreePIE.Core.Plugins.Extensions
         private static readonly PortablePaths portablepaths = new PortablePaths();
         private static readonly UacCompliantPaths uacPaths = new UacCompliantPaths(new FileSystem());
         private static List<string> commandes;
-        private static Stopwatch Utime = new Stopwatch();
+        private static Stopwatch globaltimer = new Stopwatch();
         private static int Ctime;
         private static long timer;
 
@@ -116,21 +116,21 @@ namespace FreePIE.Core.Plugins.Extensions
             return -1;
         }
         // --------------------- Extension Global Timer -----------------------------------
-        public static long StartCount()
+        public static long StartTimer()
         {
                 if (Ctime++ == 0)
-                    Utime.Restart();
-                return Utime.ElapsedMilliseconds;
+                    globaltimer.Restart();
+                return globaltimer.ElapsedMilliseconds;
         }
-        public static long ReStartCount()
+        public static long ReStartTimer()
         {
-            return Utime.ElapsedMilliseconds;
+            return globaltimer.ElapsedMilliseconds;
         }
-        public static long StopCount()
+        public static long StopTimer()
         {
             if (--Ctime <= 0)
             {
-                Utime.Stop();
+                globaltimer.Stop();
                 Ctime = 0;
             }
             return -1;
@@ -139,13 +139,13 @@ namespace FreePIE.Core.Plugins.Extensions
         {
             if (time < 0)
                 return -1;
-            return Utime.ElapsedMilliseconds - time;
+            return globaltimer.ElapsedMilliseconds - time;
         }
         public static void CheckScriptTimer()
         {
             if (timer >= 0 && timer.GetLapse() >= Convert.ToInt32(wd[1]))
             {
-                timer = StopCount();
+                timer = StopTimer();
                 NextAction();
             }
         }
@@ -309,7 +309,7 @@ namespace FreePIE.Core.Plugins.Extensions
                     NextAction();
                     break;
                 case 'T':
-                    timer = StartCount();
+                    timer = StartTimer();
                     break;
                 case 'B':
                     BeepPlugin.BackgroundBeep.Beep(Convert.ToInt32(wd[1]));
@@ -350,7 +350,7 @@ namespace FreePIE.Core.Plugins.Extensions
             //if (commandes.Count == 0)
             //    commandes = null;
         }
-
+       
         public static bool PlaySound(this bool value, string audio)
         {
             if (value)
