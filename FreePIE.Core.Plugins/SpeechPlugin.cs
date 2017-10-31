@@ -9,6 +9,8 @@ using FreePIE.Core.Plugins.ScriptAuto;
 //using System.Speech.Recognition.SrgsGrammar;
 namespace FreePIE.Core.Plugins
 {
+    using System.Linq;
+    using System.Reflection;
     using Gx = GlobalExtensionMethods;
 
     [GlobalType(Type = typeof (SpeechGlobal))]
@@ -63,33 +65,6 @@ namespace FreePIE.Core.Plugins
                         SF = new ScriptSpeech(this);
                     }
                     Gx.InvokeMethodinfo(ref SF);
-                    //switch (Gx.subcmd1)
-                    //{
-                    //    case 'Y':   // speech.Say
-                    //        Say(Gx.wd[1]);
-                    //        Gx.NextAction();
-                    //        break;
-                    //    case 'W':   // wait speaking off before speech.say
-                    //        if (Speaking) return;
-                    //        Say(Gx.wd[1]);
-                    //        Gx.NextAction();
-                    //        break;
-                    //    case 'E':   // wait speaking false
-                    //        if (!Speaking)
-                    //            Gx.NextAction();
-                    //        break;
-                    //    case 'X':   // = SW;text!SE
-                    //        string.Format("SW;{0}!SE", Gx.wd[1]).DecodelineOfCommand(section: null, priority: 3);
-                    //        break;
-                    //    case 'D':
-                    //        //var val = Gx.wd[1].Split(':');
-                    //        //float t = val.Length == 1 ? 0.9f : Convert.ToInt32(val[1]) / 100.0f; 
-                    //        //if (Said(val[0], t)) Gx.NextAction();
-                    //        if (Said(Gx.wd[1], 0.9f)) Gx.NextAction();
-                    //        break;
-                    //    default:
-                    //        throw new Exception(string.Format("Subcommand unknown -> {0};{1}", Gx.wd[0], Gx.wd[1]));
-                    //}
                 }
             }
         }
@@ -251,7 +226,7 @@ namespace FreePIE.Core.Plugins
             string cfgfile = xmlfile.Replace(".xml", ".cfg");
             xmlfile.FreePiePath().GrammarCompile(cfgfile.FreePiePath());
         }
-        public void LoadGrammar(IList<string> cfgfiles, bool firsttime)
+        public void LoadGrammar(IList<string> cfgfiles)
         {
             Said("++", 0.9f);
             foreach (var cfgfile in cfgfiles)
@@ -333,12 +308,7 @@ namespace FreePIE.Core.Plugins
 
         public bool speaking => plugin.Speaking;
 
-        public bool said(string text)
-        {
-            return plugin.Said(text, 0.9f);
-        }
-
-        public bool said(string text, float confidence)
+        public bool said(string text, float confidence = 0.9f)
         {
             return plugin.Said(text, confidence);
         }
@@ -353,9 +323,9 @@ namespace FreePIE.Core.Plugins
             plugin.SelectVoice(name);
         }
         //************************* grammar
-        public void loadCFG(IList<string> cfgfiles, bool firsttime = true)
+        public void loadCFG(IList<string> cfgfiles)
         {
-            plugin.LoadGrammar(cfgfiles, firsttime);
+            plugin.LoadGrammar(cfgfiles);
         }
         public void setCFG(IList<string> names, bool on)
         {

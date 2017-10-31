@@ -501,10 +501,7 @@ namespace FreePIE.Core.Plugins
             }
         }
 
-        public bool isLedScrollLockOn()
-        {
-            return System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.Scroll);
-        }
+        public bool isLedScrollLockOn() => System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.Scroll);
 
         public bool IsSingleClicked(int keycode) => getKeyPressedStrategy.IsSingleClicked(keycode);
         public bool IsDoubleClicked(int keycode) => getKeyPressedStrategy.IsDoubleClicked(keycode);
@@ -515,17 +512,10 @@ namespace FreePIE.Core.Plugins
         {
             // Returns true if the key is currently being pressed
             var key = (SharpDX.DirectInput.Key) ScanCodeMap[keycode];
-            bool down = KeyState.IsPressed(key) || MyKeyDown[keycode];
-            return down;
+            return  KeyState.IsPressed(key) || MyKeyDown[keycode];
         }
 
-        public bool IsKeyUp(int keycode)
-        {
-            // Returns true if the key is currently being released
-            //var key = (SharpDX.DirectInput.Key) keycode;
-            bool up = !IsKeyDown(keycode) && !MyKeyDown[keycode];
-            return up;
-        }
+        public bool IsKeyUp(int keycode) => !IsKeyDown(keycode) && !MyKeyDown[keycode];
 
         public bool IsPressed(int key) => getKeyPressedStrategy.IsPressed(key);
         public bool IsReleased(int key) => getKeyPressedStrategy.IsReleased(key);
@@ -625,26 +615,16 @@ namespace FreePIE.Core.Plugins
         }
 
         //// ****************** key single or double clicked ************************************
-        //public bool getClicked<T>(T key, bool dblclick = false)
-        //{
-        //    return dblclick ? plugin.IsDoubleClicked(Convert.ToInt32(key)) : plugin.IsSingleClicked(Convert.ToInt32(key));
-        //}
+        public bool getClicked<T>(T key, bool dblclick = false)
+        {
+            return dblclick ? plugin.IsDoubleClicked(Convert.ToInt32(key)) : plugin.IsSingleClicked(Convert.ToInt32(key));
+        }
         // ****************** button Helddown ************************************
         public int getHeldDown<T>(T key, int nbvalue, int duration) => plugin.HeldDown(Convert.ToInt32(key), nbvalue, duration);
         public void getHeldDownStop<T>(T key) => plugin.HeldDownStop(Convert.ToInt32(key));
-        public string getNamekey(int i)
-        {
-            return Enum.GetName(typeof(Key), i);
-        }
+        public string getNamekey(int i) => Enum.GetName(typeof(Key), i);
 
-        //public bool getKeyDown(Key key)
-        //{
-        //    return plugin.IsKeyDown((int) key);
-        //}
-        public bool getDown<T>(T key) where T : struct
-        {
-            return plugin.IsKeyDown(Convert.ToInt32(key));
-        }
+        public bool getDown<T>(T key) where T : struct => plugin.IsKeyDown(Convert.ToInt32(key));
 
         public bool getDown<T>(IList<T> keys)
         {
@@ -653,25 +633,13 @@ namespace FreePIE.Core.Plugins
             return true;
         }
 
-        public bool getUp<T>(T key)
-        {
-            return plugin.IsKeyUp(Convert.ToInt32(key));
-        }
+        public bool getUp<T>(T key) => plugin.IsKeyUp(Convert.ToInt32(key));
 
-        public bool getPressed<T>(T key)
-        {
-            return plugin.IsPressed(Convert.ToInt32(key));
-        }
+        public bool getPressed<T>(T key) => plugin.IsPressed(Convert.ToInt32(key));
 
-        public bool getReleased<T>(T key)
-        {
-            return plugin.IsReleased(Convert.ToInt32(key));
-        }
+        public bool getReleased<T>(T key) => plugin.IsReleased(Convert.ToInt32(key));
 
-        public void setKeyDown(Key key)
-        {
-            plugin.KeyDown((int) key);
-        }
+        public void setKeyDown(Key key) => plugin.KeyDown((int) key);
 
         //Multi keys to Keydown, return is list reversed
         public List<Key> setKeyDown(IList<Key> keys)
@@ -706,16 +674,9 @@ namespace FreePIE.Core.Plugins
             return keycursor;
         }
 
-        public void setKeyUp(Key key)
-        {
-            plugin.KeyUp((int) key);
-        }
+        public void setKeyUp(Key key) => plugin.KeyUp((int) key);
 
-        public void setKeyUp(IList<Key> keys, bool reverse = false)
-        {
-            setKey(keys, false, reverse);
-        }
-
+        public void setKeyUp(IList<Key> keys, bool reverse = false) => setKey(keys, false, reverse);
         public void setKey(Key key, bool down)
         {
             if (down)
@@ -735,10 +696,7 @@ namespace FreePIE.Core.Plugins
         }
 
         // One Key to press
-        public void setPressed<T>(T key) where T : struct
-        {
-            plugin.PressAndRelease(Convert.ToInt32(key));
-        }
+        public void setPressed<T>(T key) where T : struct => plugin.PressAndRelease(Convert.ToInt32(key));
 
         // Key(s) to press one time only
         public void setPressed<T>(IList<T> keys, bool state)
@@ -747,10 +705,7 @@ namespace FreePIE.Core.Plugins
                 plugin.PressAndRelease(Convert.ToInt32(k), state);
         }
 
-        public void setPressed<T>(T key, bool state) where T : struct
-        {
-            plugin.PressAndRelease((Convert.ToInt32(key)), state);
-        }
+        public void setPressed<T>(T key, bool state) where T : struct => plugin.PressAndRelease((Convert.ToInt32(key)), state);
 
         // list of Keys to press
 
@@ -775,26 +730,27 @@ namespace FreePIE.Core.Plugins
             true.PlaySound(frequency, duration);
         }
 
-        public bool isScrollLedOn()
-        {
-            return plugin.isLedScrollLockOn();
-        }
+        public bool isScrollLedOn() => plugin.isLedScrollLockOn();
 
         public string getBuffer()
         {
             return Gx.keystyped;
         }
 
-        private List<string> test1(List<int> l)
-        {
-            List<string> t = new List<string>();
-            foreach (var z in l)
-                t.Add(z.ToString());
-            return t;
-        }
-        public List<string> test(List<int> tu)
-        {
-            return test1(tu);
-        }
+        //private List<string> test1(List<int> l)
+        //{
+        //    List<string> t = new List<string>();
+        //    foreach (var z in l)
+        //        t.Add(z.ToString());
+        //    return t;
+        //}
+        //public List<string> test(List<int> tu)
+        //{
+        //    return test1(tu);
+        //}
+        //public KeyboardGlobal save()
+        //{
+        //    return this;
+        //}
     }
 }
